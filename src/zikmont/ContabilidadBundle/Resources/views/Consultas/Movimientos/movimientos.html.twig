@@ -1,0 +1,103 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Movimientos Contables</h2>
+    </div>      
+    <form class="well" action="{{ path('contabilidad_consultas_movimientos') }}" method="post" novalidate >
+        <table class="main-all-table-form">         
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Numero</span>
+                        <input type="text" class="span1" name="TxtNumero" value = "{{ objControles.TxtNumero }}">
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Comprobante</span>
+                         <select name="CboComprobantes">                
+                            <option value="">Seleccione</option>
+                            {% for arComprobantes in arComprobantes %}                                
+                                <option value="{{arComprobantes.codigoComprobanteContablePk}}" {%if arComprobantes.codigoComprobanteContablePk == objControles.CboComprobantes %} selected="selected" {%endif%}>{{arComprobantes.nombreComprobanteContable}}</option>
+                            {%endfor%}
+                        </select>               
+
+                    </div>
+                </tr> 
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Fecha</span>
+                        <input type="text" id="FechaDesde" class="span2" name="TxtFechaDesde"  placeholder="Desde" value = "{{ objControles.TxtFechaDesde }}"/> 
+                      - <input type="text" id="FechaHasta" class="span2" name="TxtFechaHasta"  placeholder="Hasta" value = "{{ objControles.TxtFechaHasta }}"/>
+                    </div>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="OpSubmit" value="OpBuscar" id="register_submit" class="btn btn-primary">Buscar</button></td>
+                </tr>                       
+        </table>
+
+        <table  class="table table-bordered table-condensed" style="width: 0%"> 
+            <tr>
+                <th></th>
+                <th>Fecha</th>
+                <th>Cuenta</th>
+                <th></th>
+                <th></th>
+                <th>Comprobante</th>
+                <th>Numero</th>
+                <th>Detalle</th>
+                <th>Nit</th>            
+                <th>Tercero</th>
+                <th>C. Costos</th>            
+                <th>Debito</th>
+                <th>Credito</th>
+                <th>Base</th>
+                <th></th>
+            </tr>
+            {% set douTotalDebito = 0 %}
+            {% set douTotalCredito = 0 %}
+            {% for arCtbMovimientos in arCtbMovimientos %}
+            <tr>
+                <td>{{ arCtbMovimientos.codigoMovimientoPk }}</td>
+                <td>{{ arCtbMovimientos.fecha |date("Y/m/d") }}</td>            
+                <td>{{ arCtbMovimientos.codigoCuentaFk }}</td>
+                <td>{{ arCtbMovimientos.cuentaRel.nombreCuenta }}</td>
+                <td>{{ arCtbMovimientos.codigoComprobanteContableFk }}</td>
+                <td>{{ arCtbMovimientos.comprobanteContableRel.nombreComprobanteContable }}</td>
+                <td>{{ arCtbMovimientos.numeroMovimiento }}</td>
+                <td>{{ arCtbMovimientos.detalle }}</td>
+                <td>{{ arCtbMovimientos.codigoTerceroFk }}</td>
+                <td>{{ arCtbMovimientos.terceroRel.nombreCortoTercero }}</td>
+                <td>{% if arCtbMovimientos.codigoCentroCostosFk != null %} {{ arCtbMovimientos.centroCostosRel.nombreCentroCostos }} {% endif %}</td>
+                <td style="text-align: right">{{ arCtbMovimientos.debito | number_format(2, '.', ',') }}</td>               
+                <td style="text-align: right">{{ arCtbMovimientos.credito | number_format(2, '.', ',') }}</td>
+                <td style="text-align: right">{{ arCtbMovimientos.base | number_format(2, '.', ',') }}</td>
+                <td style="text-align: center"><input type="checkbox" name="ChkSeleccionar[]" value="{{ arCtbMovimientos.codigoMovimientoPk }}" /></td>
+            </tr>
+            {% set douTotalDebito = douTotalDebito + arCtbMovimientos.debito %}
+            {% set douTotalCredito = douTotalCredito + arCtbMovimientos.credito %}
+            {% endfor %}           
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td style="text-align: right">{{ douTotalDebito | number_format(2, '.', ',') }}</td>
+                <td style="text-align: right">{{ douTotalCredito | number_format(2, '.', ',') }}</td>
+                <td></td>
+                <td></td>
+            </tr>        
+        </table> 
+        <button type="submit" name="OpSubmit" value="OpExportar" id="register_submit" class="btn btn-primary">Exportar</button>  
+        <button type="submit" name="OpSubmit" value="OpImprimir" id="register_submit" class="btn btn-primary">Imprimir</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,70 @@
+
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+<br />
+<div class="left_articles">
+    <p class="description"><h1>Balance de prueba</h1></p>
+
+<hr/>
+    <!-- Formulario de busqueda -->
+    <form id="FrmBusqueda" class="well" action="{{ path('contabilidadbalanceprueba')}}" method="POST" novalidate>
+
+        <table class="main-all-table-form">
+            <tr>
+                <td class="td-label">Cuenta:</td>
+                <td class="td-in" ><input class="span1" name="TxtCodigoCuenta" onkeypress="return validarNumeros(event)" type="text" size="15"/></td>
+            </tr>
+            <tr>
+                <td class="td-label">Movimiento:</td>
+                <td class="td-in" ><input class="span1" name="TxtCodigoMovimiento" onkeypress="return validarNumeros(event)" type="text" size="15"/></td>
+            </tr>
+            <tr>
+                <td class="td-label">Numero:</td>
+                <td class="td-in" ><input class="span1" name="TxtNumeroMovimiento" onkeypress="return validarNumeros(event)" type="text" size="15"/></td></td>
+            </tr>
+            <tr>
+                <td class="td-label">Tercero:</td>
+                <td class="td-in" ><input class="span5" name="TxtCodigoTercero" onkeypress="return validarNumeros(event)" type="text" size="15"/></td>
+            </tr>
+
+            <tr>
+                <td class="td-label">Fecha:</td>
+                <td class="td-in" >Desde<input class="span2" type="text" name="TxtFechaDesde" id="FechaDesde"/> Hasta <input class="span2" type="text" name="TxtFechaHasta" id="FechaHasta"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="td-in" ><button class="btn" type="submit" name="OpSubmit" value="OpActualizarDetalles">Buscar</button></td>
+            </tr>
+        </table>
+    </form>
+    <!-- Fin formulario de busqueda -->
+
+
+
+
+<hr/>
+
+<table class="table table-striped table-bordered table-condensed">
+    <tr>
+        <th>Documento</th>
+        <th>Cuenta</th>
+        <th>Nombre</th>
+        <th>Debitos</th>
+        <th>Creditos</th>
+        <th>Base</th>
+    </tr>
+
+    {% for movimientoContable in arMovimientosContables %}
+    <tr>
+        <td>{{ movimientoContable.numeroMovimiento }}</td>
+        <td>{{ movimientoContable.codigoCuentaFk }}</td>
+        <td>{{ movimientoContable.nombreCuenta }}</td>
+        <td style="text-align: right">{{ movimientoContable.debito | number_format(2, '.', ',') }}</td>
+        <td style="text-align: right">{{ movimientoContable.credito | number_format(2, '.', ',') }}</td>
+        <td style="text-align: right">{{ movimientoContable.base | number_format(2, '.', ',') }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

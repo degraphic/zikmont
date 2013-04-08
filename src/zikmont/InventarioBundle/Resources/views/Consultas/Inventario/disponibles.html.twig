@@ -1,0 +1,82 @@
+
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% import 'zikmontFrontEndBundle:Plantillas:macros.html.twig' as utilidades %}
+{% block content %}
+<div class="left_articles">                
+    <p class="description"><h2>Consultar Disponibles</h2></p>          
+    <hr/>
+    
+    <!-- Formulario de busqueda -->    
+    <form id="FrmBusqueda" class="well" action="{{ path('inventario_consultas_disponibles') }}" method="post">
+        <label>
+            {% if ultimo_item is not null %} {%set ultimo_item =  ultimo_item%} {% endif %}
+            {{ utilidades.textboxitem(ultimo_item,7,true,true) }}
+            <button type="submit"  name="OpSubmit" value="OpActualizarDetalles" class="btn btn-primary">Buscar</button>
+        </label>
+    </form>     
+    <hr/>
+    
+    <!-- tabla de datos disponibles-->
+    <p class="description"><h2>Existencia</h2></p>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th>Lote</th>
+            <th>Vencimiento</th>   
+            <th>Bodega</th>                                                       
+            <th>Existencia</th>
+            <th>Acciones</th>                    
+        </tr>
+
+        {% for Existencias in arExistencias %}
+            <tr>                                                                              
+                <td>{{ Existencias.loteFk }}</td>  
+                <td>{{ Existencias.codigoBodegaFk }}</td>  
+                <td>{{ Existencias.fechaVencimiento | date("d/m/Y") }}</td>                              
+                <td>{{ Existencias.existencia }}</td>                                                   
+                <td></td>                                                   
+            </tr>
+        {% endfor %}  
+    </table>  
+    <hr>
+    
+    <!-- Fin tabla de datos disponibles-->
+    <p class="description"><h2>Pedidos Pendientes</h2></p>          
+    <!-- tabla de datos pedidos pendientes--> 
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th>Cliente</th> 
+            <th>Fecha</th> 
+            <th>Nro Pedido</th> 
+            <th>Cantidad</th>                 
+            <th>Pendientes</th>                 
+            <th>Comentarios</th> 
+        </tr>
+        {% for pedidos in arPedidos %}
+            <tr>                                                                              
+                <td>{{ pedidos.cantidad }}</td>  
+                <td>{{ pedidos.fecha }}</td>                     
+                <td>{{ pedidos.numeroMovimiento }}</td>                     
+                <td>{{ pedidos.cantidad }}</td>  
+            </tr>
+        {% endfor %}  
+    </table>  
+
+    <hr/>
+    <!-- fin tabla de datos pedidos pendientes-->
+
+    <!-- tabla de datos ordenes pendientes-->
+    <p class="description"><h2>Ordenes de Compra en pendientes</h2></p>          
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th>Cliente</th> 
+            <th>Fecha</th> 
+            <th>Nro Pedido</th> 
+            <th>Cantidad</th>                 
+            <th>Pendientes</th>                 
+            <th>Comentarios</th> 
+        </tr>
+    </table>    
+    <hr/>
+    <!-- fin tabla de datos ordenes pendientes-->
+</div>
+{% endblock %}

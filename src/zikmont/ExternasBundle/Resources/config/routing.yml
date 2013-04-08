@@ -1,0 +1,3 @@
+zikmontExternasBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: zikmontExternasBundle:Default:index }

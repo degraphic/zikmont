@@ -1,0 +1,42 @@
+{% block javascripts %}
+<script lang="javascript">
+     function abrirDirectorio{{ nombre_div }}(nombre_div,codigoDirectorioPk,consulta){
+                   
+        {% set consulta %} 
+            consulta
+        {% endset %}
+            
+        $('#{{ nombre_div }}').load('{{ path('gestiondocumental_abrir_directorio',{'codigoDirectorioPk': 7,'Consulta': consulta})}}'); 
+     }
+</script>
+{% endblock %}
+
+<div id="{{ nombre_div }}">
+   <table class="table table-striped table-bordered table-condensed" style="width: 0%">
+        <tr>            
+            <th>Codigo Directorio</th>
+            <th>Directorio</th>
+            {% if boolConsulta == true %} 
+                    <th>Fecha Creación</th>.
+                    <th>Directorio Raiz</th>
+                    <th>Usuario</th>
+                    <th>Inactivo</th>
+                    <th>Comentarios</th>
+             {% endif %} 
+                </tr>
+            {% for directorio in arDirectorios %}
+                        <tr>                
+                            <td>{{ directorio.codigoDirectorioPk }}</td>
+                            <td><a href="#" onClick="abrirDirectorio{{ nombre_div }}({{ nombre_div }},{{ directorio.codigoDirectorioPk }},{{ boolConsulta }})">{{ directorio.nombreDirectorio }}</a></td>
+            
+            {% if boolConsulta == true %} 
+                            <td>{{ directorio.fechaCreacionDirectorio |date("Y/m/d H:i:s") }}</td>
+                            <td>{{ directorio.codigoDirectorioPadreFk }}</td>
+                            <td>{{ directorio.nombreUsuario }}</td>
+                            <td>{{ directorio.Inactivo }}</td>
+                            <td>{{ directorio.Comentarios }}</td>
+            {% endif %} 
+        </tr>
+            {% endfor %}
+   </table>
+</div>

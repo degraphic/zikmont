@@ -1,0 +1,51 @@
+<script src="{{ asset('js/jquery-1.7.2.js') }}"></script>        
+<script src="{{ asset('js/general.js') }}"></script>                                                         
+<script src="{{ asset('js/bootstrap-modal.js') }}"></script>         
+<script src="{{ asset('js/UI/Datepicker.js') }}"></script>                  
+<script>      
+        $('#myModal').modal('toggle');
+</script>
+
+{% import 'zikmontFrontEndBundle:Plantillas:macros.html.twig' as utilidades %}
+
+<form id="FrmAsientoNuevo" action="{{ path('contabilidad_asientos_nuevo') }}" method="post"> 
+    <div class="modal hide" id="myModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Nuevo Asiento</h3>
+        </div>                   
+   
+        <div class="modal-body">
+            <div class="well">   
+                <table class="main-all-table-form" >
+                  <td>
+                  <tr>
+                    <tr>          
+                        <strong>Comprobante contable:</strong><br>                        
+                        <select name="CboComprobanteContable">
+                           <option value="">Seleccione</option>
+                           {% for arComprobantesContables in arComprobantesContables %}
+                                <option value="{{arComprobantesContables.codigoComprobanteContablePk}}">{{arComprobantesContables.codigoComprobanteContablePk}} - {{arComprobantesContables.nombreComprobanteContable}}</option>
+                           {%endfor%}
+                       </select>                       
+                    </tr><br/> 
+                    <tr>          
+                        <strong>Fecha:</strong><br>                                                
+                        <input type="text" id="FechaDP" class="span2" name="TxtFecha"  placeholder="Fecha" value="{{ date()|date("Y/m/d") }}"/>  
+                    </tr><br/><br/>   
+                    <tr>          
+                       <strong>Comentarios:</strong><br/>
+                       <textarea class="span5" id="TxtComentarios" name="TxtComentarios"  rows=5 placeholder="Comentarios" width="300px"></textarea>
+                    </tr>                    
+                 </tr>
+                 </td>
+            </table>
+           </div> 
+        </div>
+            
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+        </div>
+    </div>   
+</form>    

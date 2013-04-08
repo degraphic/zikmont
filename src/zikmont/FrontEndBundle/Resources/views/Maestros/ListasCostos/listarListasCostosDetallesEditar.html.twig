@@ -1,0 +1,32 @@
+<script>$('#myModal').modal('show');</script>    
+<div class="modal hide" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        {% if arListasCostosDetalle is null  %}<h3>Nuevo registro</h3> {% else %} <h3>Editar registro</h3>{% endif %}
+    </div>            
+    <div class="modal-body">
+        <div class="well">                    
+            <table class="main-all-table-form">
+                {% if arListasCostosDetalle is null  %}
+                    <tr>                
+                        <td class="td-label">Item:</td>
+                        <td class="td-in" ><input class="span1" style="width:80px; text-align: right" name="TxtCodigoItem" onkeypress="return validarNumeros(event)" type="text" size="15"/></td>
+                    </tr>                        
+                    <tr>
+                        <td class="td-label">Costo:</td>
+                        <td class="td-in" ><input type="hidden" name="LblCodigoListaCostosDetalle" value="0"><input class="span1" style="width:80px; text-align: right" name="TxtCosto" onkeypress="return validarNumeros(event)" type="text" size="15" value="0"/></td>                            
+                    </tr>                                            
+                {% else %}
+                    <tr>                
+                        <td class="td-label">Costo:</td>
+                        <td class="td-in" ><input type="hidden" name="LblCodigoListaCostosDetalle" value="{{ arListasCostosDetalle.codigoLcDetallePk }}"><input class="span1" style="width:80px; text-align: right" name="TxtCosto" onkeypress="return validarNumeros(event)" type="text" size="15" value="{{ arListasCostosDetalle.costo }}"/></td>
+                    </tr>                               
+                {% endif %}
+            </table>
+        </div>                
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>                
+        <button class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar" >Guardar</button>  
+    </div>
+</div>       

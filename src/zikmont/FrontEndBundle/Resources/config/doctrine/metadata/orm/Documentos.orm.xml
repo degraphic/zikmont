@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Documentos" table="documentos">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="codigoDocumentoPk" type="smallint" column="codigo_documento_pk">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombreDocumento" type="string" column="nombre_documento" length="50"/>
+    <many-to-one field="codigoDocumentoTipoFk" target-entity="DocumentosTipo" orphan-removal="">
+      <join-columns>
+        <join-column name="codigo_documento_tipo_fk" referenced-column-name="codigo_documento_tipo_pk"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

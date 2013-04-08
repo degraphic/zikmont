@@ -1,0 +1,105 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}        
+{% block content %}
+<script>
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
+</script>
+ 
+<div class="left_articles">
+        <div class="page-header">
+        <h1>Detalles del presupuesto          
+                <small><label id="lblNombreDocumento">Obras civiles</label></small>
+            </h1>
+        </div>      
+
+        <!-- Encabezado Movimiento -->
+        <div class="well">
+            <table class="main-all-table-form">
+                <tr>
+
+                    <td class="td-label">Numero:</td>
+                    <td class="td-in" >{{ arMovimientosCivilesPresupuestos.codigoMovimientoCivilPresupuestoPk }}</td>
+
+                    <td class="td-label">Fecha:</td>
+                    <td class="td-in">{{ arMovimientosCivilesPresupuestos.fecha|date("Y/m/d H:i:s") }}</td>
+
+                    <td class="td-label">Soporte:</td>
+                    <td class="td-in" >{{ arMovimientosCivilesPresupuestos.nombrePresupuesto }}</td>
+
+                    <td class="td-label">Sub Total:</td>
+                    <td class="td-in-numerico" align="right">$ {{ 0 | number_format(2, '.', ',') }}</td>
+                </tr>
+            </table>
+        </div>
+        <!-- Fin Encabezado Movimiento -->
+        
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#detalles" data-toggle="tab">Detalles</a></li>
+            <li><a href="#conceptos" data-toggle="tab">Conceptos</a></li>                        
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="detalles">
+                <!-- Menu Encabezado Movimiento -->
+                <div id="detalles" style="width: 99.5%">
+                <!-- Formulario - Tabla -->
+                <form action="{{ path('movimientos_civiles_presupuestos_detalle', {'codigoMovimientoCivilPresupuesto': arMovimientosCivilesPresupuestos.codigoMovimientoCivilPresupuestoPk}) }}" method="post" novalidate>
+                    <header id="overview" class="jumbotron subhead" >
+                        <div class="subnav">
+                            <ul class="nav nav-pills">                
+                                <li><a id="nuevo"  class="btn btn-mini" href="#" data-reveal-id="nuevoMovimientoModal" data-animation="fade" onclick="BorrarValores()">Nuevo</a></li>
+                                <li><a id="{{ path('cargardatosmovimiento', { 'codigoMovimientoPk': arMovimientosCivilesPresupuestos.codigoMovimientoCivilPresupuestoPk }) }}" class="btn btn-mini" data-reveal-id="nuevoMovimientoModal" data-animation="fade" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 1 %} disabled {% endif %}>Editar</a></li>
+                                <li><button class="btn btn-mini" type="submit" name="OpSubmit" value="OpAutorizar" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 1 %} disabled {% endif %}>Autorizar</button></li>
+                                <li><button class="btn btn-mini" type="submit" name="OpSubmit" value="OpDesAutorizar" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 0 or arMovimientosCivilesPresupuestos.estadoImpreso == 1 %} disabled {% endif %}>Desautorizar</button></li>
+                                <li><button class="btn btn-mini" type="submit" name="OpSubmit" value="OpAnular" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 0 or arMovimientosCivilesPresupuestos.estadoAnulado == 1 or arMovimientosCivilesPresupuestos.estadoImpreso == 0 %} disabled {% endif %} onclick="javascript:if(!confirm('Esta seguro que desea anular el documento?')) return false;">Anular</button></li>
+                                <li><button class="btn btn-mini" type="submit" name="OpSubmit" value="OpImprimir" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 0 %} disabled {% endif %}>Imprimir</button></li>                                
+                            </ul>
+                        </div>
+                    </header>
+
+                    <table class="table table-striped table-bordered table-condensed">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>U/Medida</th>
+                            <th>Cantidad</th>
+                            <th><input type="checkbox" name="ChkSeleccionarTodos" OnClick="ChequearTodos(this);"/></th>  
+                        </tr>
+
+                        {% for arMovimientosCivilesPresupuestosDetalles in arMovimientosCivilesPresupuestosDetalles %}
+                        <tr>                                                               
+                            <td>
+                                <input type="hidden" name="LblCodigoDetalle[]" value="{{ arMovimientosCivilesPresupuestosDetalles.codigoMovimientoCivilPresupuestoDetallePk }}">
+                                <span class="badge">{{ arMovimientosCivilesPresupuestosDetalles.codigoMovimientoCivilPresupuestoDetallePk }}</span>
+                            </td>
+                            <td>{{ arMovimientosCivilesPresupuestosDetalles.itemRel.descripcion }}</td>                            
+                            <td>{{ arMovimientosCivilesPresupuestosDetalles.itemRel.unidadMedidaRel.nombreUnidad }}</td>                            
+                            <td style="text-align: right">{{ arMovimientosCivilesPresupuestosDetalles.cantidad | number_format(0, '.', ',') }}</td>
+                            <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arMovimientosCivilesPresupuestosDetalles.codigoMovimientoCivilPresupuestoDetallePk }}" /></td>                    
+                        </tr>
+                        {% endfor %}           
+                    </table>
+                    <!-- Botones Menu Items -->
+                    <div class="btn-toolbar" style="float:left">
+                        <div class="btn-group">  
+                           <a class="btn btn-mini" href="{{ path('movimientos_civiles_presupuestos_lista') }}" style="float:left">Volver</a>             
+                        </div>  
+                    </div>  
+
+                    <div class="btn-toolbar divDerecho">
+                        <div class="btn-group">                
+                            <a class="btn btn-mini" href="javascript:abrirVentana3('{{ path('movimientos_civiles_presupuestos_agregar_item', {'codigoMovimientoCivilPresupuesto': arMovimientosCivilesPresupuestos.codigoMovimientoCivilPresupuestoPk}) }}', 'AgregarItems', 600, 900)">Buscar Item</a>
+                            <button class="btn btn-danger btn-mini" type="submit" name="OpSubmit" value="OpEliminar" {% if arMovimientosCivilesPresupuestos.estadoAutorizado == 1 %} disabled {% endif %}>Eliminar</button>
+                        </div>                   
+                    </div>                            
+                    <!-- Fin Botones Menu Items -->                                                                  
+                    <br/><br/>
+                    <hr/>
+                </div>
+            </div>
+        </div>       
+</div>
+{% endblock %}

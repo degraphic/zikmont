@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Movimientos" table="movimientos">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="codigoMovimientoPk" type="integer" column="codigo_movimiento_pk">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numeroMovimiento" type="integer" column="numero_movimiento"/>
+    <field name="fecha" type="date" column="fecha"/>
+    <field name="codigoClienteFk" type="integer" column="codigo_cliente_fk"/>
+    <field name="codigoEmpresaFk" type="integer" column="codigo_empresa_fk"/>
+    <field name="valorTotalIva" type="float" column="valor_total_iva"/>
+    <field name="subTotal" type="float" column="sub_total"/>
+    <field name="valorTotalDescuento" type="float" column="valor_total_descuento"/>
+    <field name="totalNeto" type="float" column="total_neto"/>
+    <field name="usuario" type="string" column="usuario" length="20"/>
+    <many-to-one field="codigoDocumentoTipoFk" target-entity="DocumentosTipo" orphan-removal="">
+      <join-columns>
+        <join-column name="codigo_documento_tipo_fk" referenced-column-name="codigo_documento_tipo_pk"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codigoDocumentoFk" target-entity="Documentos" orphan-removal="">
+      <join-columns>
+        <join-column name="codigo_documento_fk" referenced-column-name="codigo_documento_pk"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,33 @@
+
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+<div class="left_articles">          
+    <br />
+    <p class="description"><h1>Informe Retenciones</h1></p>          
+    <hr/>
+    <!-- Formulario Busqueda-->
+    <form class="well" action="{{ path('informecontabilidadretenciones') }}" method="post" >
+        <input class="span2" type="text" name="TxtCodigoTercero" placeholder="Cliente..." required=""/>
+
+        <button class="btn btn-primary" type="submit" name="register_submit" id="register_submit">Generar</button>  
+    </form>      
+    <hr/>
+<!-- Tabla de datos -->
+<table class="table table-striped table-bordered table-condensed">
+    <tr>
+        <th>Doc</th>
+        <th>Tercero</th>
+        <th>Numero</th>  
+        <th>Fecha</th>  
+        <th>Dias</th>                    
+        <th>90 mas dias</th>
+        <th>61-90</th>                                                       
+        <th>31-60</th>
+        <th>1-30</th>
+        <th>Por Vencer</th>                    
+    </tr>    
+</table>
+<br />
+
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'zikmontFrontEndBundle::layout_app_limpio.html.twig' %}
+
+{% block body %}
+
+{% render "zikmontFrontEndBundle:Menu:documentos" %}
+
+<div id="container" class="container">
+    
+{% render "zikmontFrontEndBundle:Mensajes:mostrar" %}       
+        
+{% include "zikmontFrontEndBundle:Plantillas:mensajes.html.twig" %}        
+
+</div>
+    {% block content %}
+
+    {% endblock %}    
+<div id="ventanamodal"></div>
+{% endblock %}

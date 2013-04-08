@@ -1,0 +1,78 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Movimientos contables resumen</h2>
+    </div>      
+
+<hr/>
+
+<form class="well" action="{{ path('contabilidad_consultas_movimientos_resumen') }}" method="post" novalidate >
+    <table class="main-all-table-form">
+        <tr>
+
+            
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Año</span>
+                     <select name="CboCierres">
+                        <option value="">Seleccione</option>
+                        {% for arCierresMesContabilidad in arCierresMesContabilidad%}
+                        <option value="{{arCierresMesContabilidad.codigoCierreMesContabilidadPk}}" {%if arCierresMesContabilidad.codigoCierreMesContabilidadPk == intCodigoCierre%} selected="selected" {%endif%}>{{arCierresMesContabilidad.annio}} - {{arCierresMesContabilidad.mes}}</option>
+                        {%endfor%}
+                    </select>               
+
+                </div>
+            </tr>
+
+            <td></td>
+            <td><button type="submit" name="register_submit" id="register_submit" class="btn btn-block "> Buscar </button></td>
+          </tr>
+       </tr>
+   </table>
+</form>     
+
+<hr/>
+
+    <table  class="table table-bordered table-condensed" style="width: 0%"> 
+        <tr>
+            <th></th>
+            <th>Año</th>
+            <th>Mes</th>
+            <th>Cuenta</th>
+            <th>Descripcion</th>
+            <th>Debito</th>
+            <th>Credito</th>
+            <th>Base</th>
+            <th></th>
+        </tr>
+        {% set douTotalDebito = 0 %}
+        {% set douTotalCredito = 0 %}
+        {% for arMovimientosContablesResumen in arMovimientosContablesResumen %}
+        <tr>
+            <td>{{ arMovimientosContablesResumen.codigoMovimientoContableResumenPk }}</td>            
+            <td>{{ arMovimientosContablesResumen.annio }}</td>
+            <td>{{ arMovimientosContablesResumen.mes }}</td>
+            <td>{{ arMovimientosContablesResumen.codigoCuentaFk }}</td>
+            <td>{{ arMovimientosContablesResumen.cuentaRel.nombreCuenta }}</td>
+            <td style="text-align: right">{{ arMovimientosContablesResumen.debito | number_format(2, '.', ',') }}</td>               
+            <td style="text-align: right">{{ arMovimientosContablesResumen.credito | number_format(2, '.', ',') }}</td>
+            <td style="text-align: right">{{ arMovimientosContablesResumen.base | number_format(2, '.', ',') }}</td>
+            <td style="text-align: center"><input type="checkbox" name="ChkSeleccionar[]" value="{{ arMovimientosContablesResumen.codigoMovimientoContableResumenPk }}" /></td>
+        </tr>
+        {% set douTotalDebito = douTotalDebito + arMovimientosContablesResumen.debito %}
+        {% set douTotalCredito = douTotalCredito + arMovimientosContablesResumen.credito %}
+        {% endfor %}           
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td style="text-align: right">{{ douTotalDebito | number_format(2, '.', ',') }}</td>
+            <td style="text-align: right">{{ douTotalCredito | number_format(2, '.', ',') }}</td>
+            <td></td>
+            <td></td>
+        </tr>        
+    </table> 
+{% endblock %}

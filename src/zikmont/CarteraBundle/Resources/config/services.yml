@@ -1,0 +1,7 @@
+parameters:
+#    zikmont_cartera.example.class: zikmont\CarteraBundle\Example
+
+services:
+#    zikmont_cartera.example:
+#        class: %zikmont_cartera.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

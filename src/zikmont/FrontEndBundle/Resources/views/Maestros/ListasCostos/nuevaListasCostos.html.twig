@@ -1,0 +1,40 @@
+<script>$('#myModal').modal('show');</script>
+<div class="modal hide" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        {% if arListaCostos is null  %}<h3>Nueva lista</h3> {% else %} <h3>Editar lista</h3>{% endif %}
+    </div>            
+    <div class="modal-body">
+        <div class="well">                    
+            <table class="main-all-table-form">
+                {% if arListaCostos is null  %}                      
+                    <input type="hidden" name="LblCodigoLista" value="0">
+                    <tr>
+                        <td class="td-label">Nombre:</td>
+                        <td class="td-in" ><input class="span1" style="width:250px" name="TxtNombreLista" type="text" size="15" required/></td>                            
+                        
+                        <tr>                
+                          <td class="td-label">Vigente Hasta:</td>
+                          <td class="td-in" ><input type="text" id="FechaHasta" class="span2" name="TxtFechaHasta" placeholder="Hasta"/></td>
+                        </tr>  
+                    </tr>                                            
+                {% else %}
+                    <tr>                
+                        <input type="hidden" name="LblCodigoLista" value="{{ arListaCostos.codigoListaCostoPk }}">
+                        <td class="td-label">Nombre:</td>
+                        <td class="td-in" ><input class="span1" style="width:250px" name="TxtNombreLista" type="text" size="15" value="{{ arListaCostos.nombreListaCostos }}" required/></td>
+                        
+                        <tr>                
+                          <td class="td-label">Vigente Hasta:</td>
+                          <td class="td-in" ><input type="text" id="FechaHasta" class="span2" name="TxtFechaHasta" value="{{arListaCostos.fechaHasta}}" placeholder="Hasta"/></td>
+                        </tr>  
+                    </tr>                               
+                {% endif %}
+            </table>
+        </div>                
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+        <button class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar" >Guardar</button>  
+    </div>
+</div>

@@ -1,0 +1,31 @@
+
+<form class="well" id="FrmNuevo" action="{{path('maestros_contabilidad_centro_costos_nuevo', { 'codigoCentroCostosPk':  0 })}}" method="post"> 
+    <script>$('#myModal').modal('toggle');</script>
+    <div class="modal hide" id="myModal">    
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>{%if arCentroCostos is not null%}Editar CentroCostos{%else%}Crear centro costos{%endif%}</h3>
+        </div>    
+        <div class="modal-body">                             
+            <div class="well">      
+                <table>
+                    {% if arCentroCostos is defined and arCentroCostos is not null %}
+                    <tr>
+                        <td><strong>Código:</strong><br/></td>
+                        <td><input type="text" class="span4" readonly="true" name="TxtCodigoCentroCostos" {% if arCentroCostos is defined and arCentroCostos is not null %} value="{{arCentroCostos.codigoCentroCostosPk}}" readonly="true" {% endif %}/></td>              
+                    <tr> 
+                    {% endif %}
+                    <tr>
+                        <td><strong>Descripción:</strong><br/></td>
+                        <td><input type="text" class="span4" name="TxtNombreCentroCostos" {% if arCentroCostos is defined and arCentroCostos is not null %} value="{{arCentroCostos.nombreCentroCostos}}" {% endif %} placeholder="Nombre" required autofocus/></td>              
+                    <tr>                                        
+                    </table>            
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+        </div>  
+    </div>
+</form>   

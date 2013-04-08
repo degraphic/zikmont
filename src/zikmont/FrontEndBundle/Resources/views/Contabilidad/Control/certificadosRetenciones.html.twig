@@ -1,0 +1,30 @@
+
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+<br />
+<div class="left_articles">                
+    <p class="description"><h1>Certificados de retenciones "agrupar por tercero"</h1></p>                  
+<hr/>
+
+<table class="table table-striped table-bordered table-condensed">
+    <tr>
+        <th>Movimiento</th>
+        <th>Documento</th>
+        <th>Fecha</th>
+        <th>Tercero</th>
+        <th>$ Retencion</th>
+        <th>$ Base</th>
+    </tr>          
+    {% for arControlRetencionFuente in arControlRetencionesFuente %}
+    <tr>
+        <td>{{ arControlRetencionFuente.codigoMovimientoFk }}</td>        
+        <td>{{ arControlRetencionFuente.movimientoRel.numeroMovimiento }}</td>
+        <td>{{ arControlRetencionFuente.movimientoRel.fecha |date("Y/m/d") }}</td>
+        <td>{{ arControlRetencionFuente.movimientoRel.terceroRel.NombreCortoTercero }}</td>
+        <td style="text-align: right">{{ arControlRetencionFuente.valorRetencionFuente | number_format(2, '.', ',') }}</td>
+        <td style="text-align: right">{{ arControlRetencionFuente.base | number_format(2, '.', ',') }}</td>
+    </tr>
+    {% endfor %}    
+</table>   
+</div>
+{% endblock %}

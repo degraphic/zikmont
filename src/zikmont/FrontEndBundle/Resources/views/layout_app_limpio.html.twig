@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('bundles/zikmont/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/docs.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/prettify.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/reveal.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/pro_dropdown_2.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/thickbox.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/jquery.autocomplete.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/zikmont.css') }}" type="text/css" rel="stylesheet" />
+
+<link href="{{ asset('css/UI/Datepicker.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+
+<script type="text/javascript">
+   $().ready(function() {
+        $('#myModal').modal('toggle');
+   })
+</script> 
+
+
+<div class="container">     
+    {% import 'zikmontFrontEndBundle:Plantillas:macros.html.twig' as utilidades %}
+    {% block content %}
+
+    {% endblock %}
+</div>
+    
+{% endblock %}

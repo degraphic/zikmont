@@ -1,0 +1,231 @@
+
+/* Propios*/
+.main-all-table-form{
+    display:block;
+    font-weight:bold;
+    font-size:12px;
+    padding: 10px 20px 3px 20px;
+    width:100%;
+}
+
+.main-all-table-form td{
+    padding: 3px 0px 7px 2px;
+}
+
+.div-form {
+    padding: 0 0px;
+    margin:5px 0;
+    border: 1px dashed;
+    border-color:#CCCCCC;
+    background-color: #FAFAFA;
+    align:left; 
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+}
+
+.div-form input{
+    margin:0px 0;
+}
+
+.td-label{
+    background-color:#e3e3e3;
+    text-align:right;
+    width:100px;
+    -moz-border-radius-bottomleft: 7px;
+    -webkit-border-top-left-radius:7px;
+    border-top-left-radius:4px;
+}
+
+.td-in{
+    text-align:left;
+    width:200px;
+    padding: 2px 2px 2px 3px;
+}
+
+.td-in-well {
+    text-align:left;
+    width:200px;
+    padding: 2px 2px 2px 3px;
+    font-weight:normal;
+}
+
+.td-in-well-numerico{
+    text-align:right;
+    width:200px;
+    padding: 2px 2px 2px 3px;
+    font-weight:normal;
+}
+
+
+.td-in-numerico{
+    text-align:right;
+    width:200px;
+    padding: 2px 2px 2px 3px;
+}
+
+#divAyudaProceso {
+    display: none;
+}
+
+.divDerecho {
+    float: right;
+}
+
+#suptipo {
+    background-color: #e5e5e5;
+    color:black;
+    font-weight: bold;
+    border-right:none;
+}
+/* Fin Propios */
+
+
+
+/* Autocompletado */
+
+.ac_results {
+    padding: 0px;
+    border: 1px solid black;
+    background-color: white;
+    overflow: hidden;
+    z-index: 99999;
+}
+
+.ac_results ul {
+    width: 100%;
+    list-style-position: outside;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ac_results li {
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: default;
+    display: block;
+    /* 
+    if width will be 100% horizontal scrollbar will apear 
+    when scroll mode will be used
+    */
+    /*width: 100%;*/
+    font: menu;
+    font-size: 12px;
+    /* 
+    it is very important, if line-height not setted or setted 
+    in relative units scroll will be broken in firefox
+    */
+    line-height: 16px;
+    overflow: hidden;
+}
+
+.ac_loading {
+    background: white url('indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+    background-color: #eee;
+}
+
+.ac_over {
+    background-color: #0A246A;
+    color: white;
+}
+
+/* impresion */
+@media print
+{
+    .noprint {display: none ;}
+}
+
+.section-header{
+    background-color:#f6f6f6;
+    background-image:-moz-linear-gradient(top, #fafafa, #f2f2f2);
+    background-image:-ms-linear-gradient(top, #fafafa, #f2f2f2);
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#f2f2f2));
+    background-image:-webkit-linear-gradient(top, #fafafa, #f2f2f2);
+    background-image:-o-linear-gradient(top, #fafafa, #f2f2f2);
+    background-image:linear-gradient(top, #fafafa,#f2f2f2);
+    background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFAFAFA', endColorstr='#FFF2F2F2', GradientType=0);
+    border-top:1px solid #fff;
+    border-bottom:1px solid #ccc;
+    -moz-border-radius-topleft:4px;
+    -webkit-border-top-left-radius:4px;
+    border-top-left-radius:4px;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-right-radius:4px;
+    border-top-right-radius:4px;
+    height:40px;line-height:46px;
+    padding:0 9px 0
+}
+
+.section-header h3,.section-header h5{
+    color:#555;float:left;
+    padding-top: 5px;
+    line-height:6px;
+    text-transform:uppercase;
+    font-size: 15px;
+    text-shadow:1px 1px 0 #fff;
+        
+}
+
+
+.section-body{
+    min-height:18px;
+    padding:9px 9px 0;
+}
+
+.section-large .section-body{
+    padding:18px 20px 0
+}
+
+.section{
+    background-color:#fff;
+    border:1px solid #ccc;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -ms-border-radius:4px;
+    -o-border-radius:4px;
+    border-radius:4px;
+}
+
+.input-prepend .add-on-zikmont {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  min-width: 16px;
+  padding: 4px 5px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+  text-shadow: 0 1px 0 #ffffff;
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  width: 80px;
+  text-align:right;
+  text-shadow: inherit;
+}
+
+
+/* GRID 869 */ 
+.table-condensed td {
+    font-size: 11px;
+    padding: 3px 3px;
+}
+
+/* GRID 869 */ 
+.table-condensed td input {
+    height: 14px;
+    padding: 3px 3px;
+    margin-bottom: 1px;
+    font-size: 10px;
+}
+
+/* GRID 869 */ 
+.table-condensed td select {
+    height: 21px;
+    padding: 3px 3px;
+    margin-bottom: 1px;
+    font-size: 10px;
+}

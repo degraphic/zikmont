@@ -1,0 +1,35 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}    
+    <div class="page-header">
+        <h1>Control retenciones: 
+            <small><label id="lblNombreDocumento">Certificados pendientes</label></small>
+        </h1>
+    </div>         
+    <form action="{{ path('contabilidad_control_retenciones') }}" method="POST" novalidate>    
+        <table  class="table table-bordered table-condensed" style="width: 0%"> 
+            <tr>
+                <th>Nit</th>
+                <th>Tercero</th>
+                <th>Annio</th>
+                <th>Mes</th>
+                <th>Valor</th>
+                <th>Ult. Comentario</th>
+                <th></th>                
+                <th></th>
+            </tr>
+            {% for arCtbControlRetenciones in arCtbControlRetenciones %}
+            <tr>
+                <td>{{ arCtbControlRetenciones.codigoTerceroFk }}</td>                
+                <td>{{ arCtbControlRetenciones.terceroRel.nombreCortoTercero }}</td>
+                <td>{{ arCtbControlRetenciones.annio }}</td>
+                <td>{{ arCtbControlRetenciones.mes }}</td>
+                <td style="text-align: right">{{ arCtbControlRetenciones.valor | number_format(2, '.', ',') }}</td>                   
+                <td>{{ arCtbControlRetenciones.fechaUltimoComentario |date("Y/m/d")  }}</td>
+                <td><button class="btn btn-success btn-mini" type="submit" name="OpSubmit" value="{{ arCtbControlRetenciones.codigoControlRetencionesPk }}" >Descargar</button></td>                
+                <td><a class="btn btn-mini" id="{{ path('contabilidad_control_retenciones_nuevo_comentario', { 'CodigoControlRetenciones': arCtbControlRetenciones.codigoControlRetencionesPk }) }}" href="#" data-reveal-id="nuevoMovimientoModal" data-animation="fade">Agregar nota</a></td>
+            </tr>
+            {% endfor %}                  
+        </table>
+    </form>
+</div>
+{% endblock %}

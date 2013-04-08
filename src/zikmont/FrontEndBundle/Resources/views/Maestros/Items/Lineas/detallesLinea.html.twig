@@ -1,0 +1,86 @@
+
+{% extends 'zikmontFrontEndBundle::layout_app_limpio.html.twig' %}
+{% block content %}
+    <div class="left_articles">                
+<h3>Item </h3>    
+    <form class="well" id="FrmNuevo" action="{{path('itemnuevo')}}"  method="post"> 
+
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Información General</a></li>
+                <li><a href="#tab2" data-toggle="tab">Cuentas</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <table>
+                        
+                        
+                        <tr>
+                            <td><strong>Código:</strong><br/></td>
+                            <td><input type="text" class="span4" readonly="true" name="TxtCodigoItem" {% if arItem is defined and arItem is not null %} value="{{arItem.codigoItemPk}}" {% endif %} placeholder="Descripcion" required autofocus/></td>              
+                        <tr>     
+
+                        <tr>
+                            <td><strong>Descripción:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDescripcion" {% if arItem is defined and arItem is not null %} value="{{arItem.descripcion}}" {% endif %} placeholder="Descripcion" required autofocus/></td>              
+                        <tr>                                        
+                            
+                            <tr>
+                            <td><strong>Código EAN:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCodigoEAN" {% if arItem is defined and arItem is not null %} value="{{arItem.codigoEAN}}" {% endif %}  placeholder="Código EAN" required autofocus/></td>              
+                        <tr>                                        
+                            
+                            <tr>
+                            <td><strong>Código de Barras:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCodigoBarra" {% if arItem is defined and arItem is not null %} value="{{arItem.codigoBarras}}" {% endif %} placeholder="Código Barras" required autofocus/></td>              
+                        <tr>                                        
+                            
+                        <tr>          
+                            <td><strong>Porcentaje Iva:</strong><br/></td>
+                            <td><input type="text" class="span1" name="TxtPorcentajeIva" {% if arItem is defined %} value="{{arItem.porcentajeIva}}" {% endif %} placeholder="Iva" ></input></td>                
+                        </tr>    
+                    </table>            
+                </div>
+
+                <div class="tab-pane" id="tab2">
+                    <table>
+
+                        <tr>          
+                            <td><strong>Cuenta Ingreso:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCuentaIngreso"  {% if arItem is defined %} value="{{arItem.cuentaIngreso}}" {% endif %}  placeholder="Cuenta Ingreso" ></input></td>                
+                        </tr>                                
+
+                        <tr>          
+                            <td><strong>Cuenta Devolución Ventas</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCuentaDevolucionVentas" {% if arItem is defined %} value="{{arItem.cuentaDevolucionVentas}}" {% endif %}   placeholder="Cuenta Devolucion Ventas" ></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Cuenta Compras:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCuentaCompras" {% if arItem is defined %} value="{{arItem.cuentaCompras}}" {% endif %} placeholder="Cuenta Compras" ></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Cuentas Costo:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCuentaCosto" {% if arItem is defined %} value="{{arItem.cuentaCosto}}" {% endif %} placeholder="Cuenta Costos" ></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Cuenta Devolución Compras:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtCuentaDevolucionCompras" {% if arItem is defined %} value="{{arItem.cuentaDevolucionCompras}}" {% endif %} placeholder="Cuenta Devolución Compras" ></input></td>                
+                        </tr>   
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        
+        <tr>  
+            <td><hr></td>
+            <td><button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button></td>
+        </tr>
+
+    </form>       
+</div>
+{% endblock %}  

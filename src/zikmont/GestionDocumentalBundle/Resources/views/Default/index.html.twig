@@ -1,0 +1,280 @@
+{% extends 'zikmontGestionDocumentalBundle::layout_app.html.twig' %}
+{% block content %}
+
+
+{% block javascripts %}
+<script>
+    $(document).ready(function(){
+        $('#digitalizar').live('click',function(){ 
+                $('#browser').load('{{ path('cargardirectorios')}}'); 
+        });
+    
+    
+    // first example
+        $("#navigation").treeview({
+                collapsed: true,
+                unique: true,
+                persist: "location"
+        });
+
+	
+        // second example
+        $("#browser").treeview({
+                animated:"normal",
+                persist: "cookie"
+        });
+
+        $("#samplebutton").click(function(){
+                var branches = $("<li><span class='folder'>New Sublist</span><ul>" + 
+                        "<li><span class='file'>Item1</span></li>" + 
+                        "<li><span class='file'>Item2</span></li></ul></li>").appendTo("#browser");
+                $("#browser").treeview({
+                        add: branches
+                });
+        });
+
+
+        // third example
+        $("#red").treeview({
+                animated: "fast",
+                collapsed: true,
+                control: "#treecontrol"
+        });
+
+    });
+       
+    </script>
+{% endblock %}
+    <hr>
+    <div class="btn-group" style="float: right">
+        <button class="btn"><image src="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_019_cogwheel.png') }}" width=20 height=20></button>
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+            <a  href="#" id="{{ path('gestiondocumental_cargar_documentos',{'codigoDocumentoPk':''}) }}">Crear Documento</a>
+            <a  href="#" id="{{ path('gestiondocumental_cargarconfiguraciondocumentos') }}">Configurar Rutas</a>
+        </ul>
+    </div>
+    <p class="description"><h2>Administrar</h2></p>   
+
+
+
+
+{% import 'zikmontFrontEndBundle:Plantillas:macros.html.twig' as utilidades %}
+<hr>
+
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#lA" data-toggle="tab">Administración</a></li>
+        <li id="digitalizar"><a href="#lB"  data-toggle="tab">Digitalizar Documento</a></li>
+        <li><a href="#lC" data-toggle="tab">Buscar Documentos</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="lA">
+            <div class="page-header">
+                <a  class="btn btn-mini" id="{{ path('cargardatosdirectorio', { 'codigoDirectorioPk':  0 }) }}"><image src="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_190_circle_plus.png') }}" width=20 height=20> Crear Directorio</a>
+            </div>
+
+           <div id="divdirectoriosPrincipal">
+             {% render "zikmontGestionDocumentalBundle:DirectoriosDocumentos:AbrirDirectorio" with {'codigoDirectorioPk': null,'Consulta': true,'nombre_div':'divdirectoriosPrincipal'}%}
+           </div>
+        </div>
+
+        <div class="tab-pane" id="lB">
+
+            
+            
+            <div id="divdirectoriosDigitalizar" style="margin-right: -89px">
+                    {% render "zikmontGestionDocumentalBundle:DirectoriosDocumentos:AbrirDirectorio" with {'codigoDirectorioPk': null,'Consulta': false,'nombre_div':'divdirectoriosDigitalizar'}%}
+             </div>
+            
+            <div id="divbrowser" style="float: right; margin-top: -5px; margin-right: 90px">    
+                
+
+                    <!--     <ul id="browsesr" class="filetree">
+                             <li>
+                                 <span class="folder">/home/desarrollo2/Documents/documentos/</span>                  
+                                 <ul>
+                                     <li>
+                                         <span class="folder">/home/desarrollo2/Documents/documentos/59/</span>                             
+                                         <ul>
+                                             <li><span class="file">71564.pdf</span></li>
+                                         </ul>
+                                     </li>
+                                     <li>
+                                         <span class="folder">/home/desarrollo2/Documents/documentos/58/</span>                    
+                                         <ul>
+                                             <li><span class="file">ABA Cientifica Reevaluacion.pdf</span></li>
+                                         </ul>
+                                      </li>
+                            
+                                 </ul>
+                             </li>
+                         </ul>-->
+
+                </div>
+
+                <div class="well" style="width: 70%">
+                    <table id="main-all-table-form">
+                        <form class="well" id="FrmNuevo" action="{{path('gestiondocumental_digitalizar_documento')}}" method="post" >
+
+                            <tr>
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Documento</span>
+                                    <select name="CboDocumentos">
+                                        <option value="">---Seleccione un Documento---</option>
+                                    {%if arDocumentos is defined %}
+                                        {%for Documento in arDocumentos %}
+                                        <option value="{{Documento.codigoDocumentoPk}}">{{Documento.nombreDocumento}}</option>
+                                        {%endfor%}
+                                    {%endif%}
+                                    </select>               
+                                </div>
+                            </tr>
+
+                            <tr>          
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Archivo</span>      
+                                    <input type="file" name="FluArchivo" EnableViewState="true" Width="400" MaxFileSize="200000000" autofocus="true"/>
+                                </div>
+                            </tr>
+
+                            <tr>                
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Número</span>
+                                    <input type="text" class="span4" name="TxtNumeroDocumento" placeholder="Número Documento"  width="300px">
+                                </div>
+                            </tr>
+
+                            <tr>                
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Fh Doc</span>
+                                    <input type="text" id="FechaDesde" class="span2" name="TxtFechaDesde" placeholder="Fecha del Documento"/>  
+                                </div>
+                            </tr>
+
+                            <tr>                
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Nro. Radicado</span>
+                                    <input type="text" class="span4" name="TxtNroRadicado" placeholder="Numero de Radicado"/> 
+                                </div>
+                            </tr>
+
+                            <tr>                
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Documento</span>
+
+                                    <label class="radio">Recibido<input type="radio"  name="RdbDocumentoRecibido" value="R" /></label> <label class="radio">Enviado<input  type="radio" name="RdbDocumentoEnviado"  value="E" /> </label>  <label class="radio">Interna<input  type="radio" name="RdbDocumentoInterno"  value="I" /> </label>
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Remitente</span>
+                                    {{ utilidades.textboxtercero('',5,false,false,'TxtRemitente') }}
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Destinatario</span>
+                                   {{ utilidades.textboxtercero('',5,false,false,'TxtDestinatario') }}
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Nombre Contacto</span>
+                                    <input type="text" class="span4" name="TxtNmContacto" placeholder="Nombre del Contacto"/> 
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Cargo Contacto</span>
+                                    <input type="text" class="span4" name="TxtCargoContacto" placeholder="Cargo/Dpto del Contacto"/> 
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Tipo Archivo</span>
+                                    <select name="CboTiposArchivos">
+                                        <option value="">---Seleccione un Tipo---</option>
+                                {%if arTiposArchivos is defined %}
+                                    {%for Tipos in arTiposArchivos %}
+                                        <option value="{{Tipos.codigoTipoArchivoPk}}">{{Tipos.nombreTipoArchivo}}</option>
+                                    {%endfor%}
+                                {%endif%}
+                                    </select>               
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Disposiciones</span>
+                                    <select name="CboDisposicionesFinales">
+                                        <option value="">---Seleccione una Disposicion---</option>
+                                {%if arDisposicionesFinales is defined %}
+                                    {%for Disposiciones in arDisposicionesFinales %}
+                                        <option value="{{Disposiciones.codigoDisposicionFinalPk}}">{{Disposiciones.nombreDisposicionFinal}}</option>
+                                    {%endfor%}
+                                {%endif%}
+
+                                    </select>               
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Unidad</span>
+                                    <select name="CboUnidadesDocumentales">
+                                        <option value="">---Seleccione una Unidad---</option>
+                                    {%if arUnidadesDocumentales is defined %}
+                                        {%for Unidad in arUnidadesDocumentales %}
+                                        <option value="{{Unidad.codigoUnidadDocumentalPk}}">{{Unidad.nombreUnidadDocumental}}</option>
+                                        {%endfor%}
+                                    {%endif%}
+                                    </select>   
+                                </div>
+                            </tr>
+
+                            <tr>                        
+                                <div class="input-prepend">
+                                    <span class="add-on-zikmont">Comentarios</span>
+                                    <textarea class="span4" name="TxtComentarios" placeholder="Comentarios" width="300px"></textarea>
+                                </div>
+                            </tr> 
+                            
+                            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Digitalizar</button>
+
+                        </form> 
+                    </table>
+                </div>
+
+
+
+            </div>
+            <div class="tab-pane" id="lC">
+
+
+                <ul>
+                    <li>Directorio Raiz</li>
+                    <li>
+                        <ul>
+                            <li>Sub Directorio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div
+    <hr>        
+    <footer>
+        <p><a href="#">RSS Feed</a> &middot; <a href="#">Most Popular</a> &middot; <a href="#">Today's Favorites</a> &middot; <a href="#">All Time Favorites</a> &middot; <a href="#">Sharing Policy</a> &middot; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
+            &copy; Copyright 2012 Zikmont Link!, Diseñado por: Luka Cvrk, <a title="" href="#">Zikmont</a></p>
+    </footer>
+{% endblock %}

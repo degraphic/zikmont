@@ -1,0 +1,91 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}    
+
+    <div class="page-header">
+        <h1>Lista Asientos: </h1>
+    </div>              
+    <form class="well" action="{{ path('contabilidad_asientos_lista') }}" method="post" novalidate >
+        <table class="main-all-table-form">         
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Numero</span>
+                        <input type="text" class="span1" name="TxtNumero" value = "{{ objControles.TxtNumero }}">
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Comprobante</span>
+                         <select name="CboComprobantes">                
+                            <option value="">Seleccione</option>
+                            {% for arComprobantes in arComprobantes %}                                
+                                <option value="{{arComprobantes.codigoComprobanteContablePk}}" {%if arComprobantes.codigoComprobanteContablePk == objControles.CboComprobantes %} selected="selected" {%endif%}>{{arComprobantes.nombreComprobanteContable}}</option>
+                            {%endfor%}
+                        </select>               
+
+                    </div>
+                </tr>
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Estado</span>
+                        <span class="help-inline">
+                            <label class="checkbox inline"><input type="checkbox" text="Autorizado" name = "ChkAutorizado"/> Autorizado</label>
+                            <label class="checkbox inline"><input type="checkbox" text="Cerrado" name = "ChkCerrado"/> Cerrado</label>
+                            <label class="checkbox inline"><input type="checkbox" text="Contabilizado" name = "ChkContabilizado" checked="true"/> Contabilizado</label>
+                        </span>                
+                    </div>
+                </tr> 
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Fecha</span>
+                        <input type="text" id="FechaDesde" class="span2" name="TxtFechaDesde"  placeholder="Desde" value = "{{ objControles.TxtFechaDesde }}"/> 
+                      - <input type="text" id="FechaHasta" class="span2" name="TxtFechaHasta"  placeholder="Hasta" value = "{{ objControles.TxtFechaHasta }}"/>
+                    </div>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="OpSubmit" value="OpBuscar" id="register_submit" class="btn btn-primary">Buscar</button></td>
+                </tr>                       
+        </table>
+    </form> 
+    <form action="{{ path('contabilidad_asientos_lista') }}" method="post" novalidate>                
+        <table  class="table table-striped table-bordered table-condensed">
+
+            <tr>
+                <th>ID</th>
+                <th>Número</th>
+                <th>Fecha</th>  
+                <th>Comprobante</th>  
+                <th>Comentarios</th>
+                <th>Total</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            {% for asiento in arAsientos %}
+                <tr>
+                    <td>{{ asiento.codigoAsientoPk }}</td>
+                    <td>{{ asiento.numeroAsiento | number_format(0)}}</td>
+                    <td>{{ asiento.fecha |date("Y/m/d")  }}</td>
+                    <td>{{ asiento.comprobanteContableRel.nombreComprobanteContable }}</td>
+                    <td>{{ asiento.comentarios}}</td>
+                    <td></td>            
+                    <td style="text-align: center"><a href="{{ path('contabilidad_asientos_detalles', { 'codigoAsiento': asiento.codigoAsientoPk }) }}"><IMG SRC="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_152_new_window.png') }}" WIDTH=20 HEIGHT=20></a></td>
+                    <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ asiento.codigoAsientoPk }}" /></td>                                
+                </tr>
+            {% endfor %}            
+
+        </table>   
+        <!-- Botones Menu Items -->
+        <div class="btn-toolbar" style="float: right">
+            <div class="btn-group">    
+                <a class="btn btn-mini" id="{{ path('contabilidad_asientos_nuevo') }}" href="#" data-reveal-id="nuevoMovimientoModal" data-animation="fade">Nuevo</a>
+                <button class="btn btn-danger btn-mini" type="submit" name="OpSubmit" value="OpEliminar" >Eliminar</button>
+
+            </div>                   
+        </div>                            
+        <!-- Fin Botones Menu Items -->     
+    </form>   
+    
+</div>
+{% endblock %}

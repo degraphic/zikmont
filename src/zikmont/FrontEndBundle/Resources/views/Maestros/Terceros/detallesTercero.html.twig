@@ -1,0 +1,146 @@
+<script>
+    $('#myModal').modal('toggle');
+</script>
+<form class="well" id="FrmNuevo" action="{{path('terceronuevo')}}" method="post" > 
+    <div class="modal hide" id="myModal">
+        
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>{%if arTercero is not null%}Editar{%else%}Crear Tercero{%endif%}</h3>
+        </div>    
+
+        <div class="modal-body">
+            <div class="well">   
+
+                <div class="tabbable"> <!-- Only required for left/right tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Información General</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Información Financiera</a></li>
+                        <li><a href="#tab3" data-toggle="tab">Agregar</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <table>
+
+                                <tr>
+                                    <td><strong>Identificación:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtCodigoTercero" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.codigoTerceroPk}}" readonly="true" {% endif %} onkeypress="return validarNumeros(event)" width="200px" placeholder="NIT Cliente" required autofocus/></td>              
+                                <tr>                                        
+
+                                <tr>          
+                                    <td><strong>Nombre Corto:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtNombreCorto"  {% if arTercero is defined and arTercero is not null %} value="{{arTercero.nombreCortoTercero}}" {% endif %}  placeholder="Nombre Corto" width="300px"></input></td>                
+                                </tr>                                
+
+                                <tr>          
+                                    <td><strong>Nombres</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtNombres" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.nombres}}" {% endif %}   placeholder="Nombres" width="300px"></input></td>                
+                                </tr>                       
+
+                                <tr>          
+                                    <td><strong>Apellido 1:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtApellido1" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.apellido1}}" {% endif %} placeholder="Primer Apellido" width="300px"></input></td>                
+                                </tr>                       
+
+                                <tr>          
+                                    <td><strong>Apellido 2:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtApellido2" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.apellido2}}" {% endif %} placeholder="Segundo Apellido" width="300px"></input></td>                
+                                </tr>                       
+
+                                <tr>          
+                                    <td><strong>Dirección:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtDireccion" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.direccion}}" {% endif %} placeholder="Dirección" width="300px"></input></td>                
+                                </tr>    
+
+                                <tr>          
+                                    <td><strong>Teléfono:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtTelefono" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.telefono}}" {% endif %} placeholder="Teléfono" width="300px"></input></td>                
+                                </tr>   
+
+                                <tr>          
+                                    <td><strong>Celular:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtCelular" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.celular}}" {% endif %} placeholder="Celular" width="300px"></input></td>                
+                                </tr>   
+
+                                <tr>          
+                                    <td><strong>Fax:</strong><br/></td>
+                                    <td><input type="text" class="span4" name="TxtFax" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.fax}}" {% endif %} placeholder="Fax" width="300px"></input></td>                
+                                </tr>   
+
+                                <tr>          
+                                    <td><strong>Email:</strong><br/></td>
+                                    <td><input type="email" class="span4" name="TxtEmail" {% if arTercero is defined and arTercero is not null %} value="{{arTercero.email}}" {% endif %} placeholder="Email" width="300px"></input></td>                
+                                </tr>    
+
+                            </table>            
+                        </div>
+
+                        <div class="tab-pane" id="tab2">
+                            <table>
+                                <tr>
+                                    <td><strong>Retefuente Ventas:</strong><br/></td>
+                                    <td><input type="checkbox" {% if arTercero is defined and arTercero is not null and arTercero.retencionFuenteVentas == 1 %} checked="true" {% endif %} name="ChkRetefteVentas"/></td>              
+                                </tr>                                        
+
+                                <tr>
+                                    <td><strong>Autoretenedor:</strong><br/></td>
+                                    <td><input type="checkbox" {% if arTercero is defined and arTercero is not null and arTercero.autoretenedor == 1%} checked="true" {% endif %} name="ChkAutoretenedor"/></td>              
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Retefuente Sin Base(ventas):</strong><br/></td>
+                                    <td><input type="checkbox" {% if arTercero is defined and arTercero is not null and arTercero.retencionFuenteVentasSinBase == 1%}  checked="true" {% endif %} name="ChkRetefteSinBaseVentas"/></td>              
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Clasificación Tributaria:</strong><br/></td>
+                                    <td><select name="CboClasificacionTributaria"></select></td>              
+                                </tr>   
+
+                                <tr>
+                                    <td><strong>Lista Precios:</strong><br/></td>
+                                    <td><select name="CboListaPrecios"></select></td>              
+                                </tr>                        
+
+                                <tr>
+                                    <td><strong>Lista Costos:</strong><br/></td>
+                                    <td><select name="CboListaCostos"></select></td>              
+                                </tr>                        
+
+
+                            </table>
+                        </div>
+                            
+                        <div class="tab-pane" id="tab3">
+                            <table>
+                                <tr>
+                                    <td><a id="agregardireccion" href="#" >Agregar Dirección:</a></td>
+                                </tr>                                        
+
+                                
+                                <div id="agregar"></div>
+                                
+                                {% block javascripts %}
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#agregardireccion').live('click',function(){ 
+                                                $('#agregar').load('{{ path('listaritems') }}'); 
+                                              
+                                            });
+                                        });
+                                    </script>
+                                {% endblock %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+        </div>
+
+</div>
+</form>       

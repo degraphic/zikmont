@@ -1,0 +1,10 @@
+TRUNCATE TABLE  `asientos_detalles`;
+TRUNCATE TABLE  `asientos`;
+TRUNCATE TABLE  `cierres_mes_inventario_documentos`;
+TRUNCATE TABLE  `cuentas_cobrar`;
+TRUNCATE TABLE  `cuentas_pagar`;
+TRUNCATE TABLE  `despachos`;
+TRUNCATE TABLE  `guias`;
+TRUNCATE TABLE  `movimientos_detalles`;
+TRUNCATE TABLE  `movimientos`;
+TRUNCATE TABLE  `movimientos_contables`;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Lotes" table="lotes">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="codigoItemFk" type="integer" column="codigo_item_fk"/>
+    <id name="lote" type="string" column="lote"/>
+    <id name="codigoBodegaFk" type="smallint" column="codigo_bodega_fk"/>
+    <field name="existencia" type="integer" column="existencia"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

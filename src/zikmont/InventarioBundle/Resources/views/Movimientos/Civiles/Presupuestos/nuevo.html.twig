@@ -1,0 +1,68 @@
+<script src="{{ asset('js/bootstrap-modal.js') }}"></script>
+
+<script type="text/javascript">
+   $().ready(function() {
+        $('#myModal').modal('toggle');
+   })
+</script>
+
+{% import 'zikmontFrontEndBundle:Plantillas:macros.html.twig' as utilidades %}
+
+<form id="FrmNuevo" action="{{ path('movimientos_civiles_presupuestos_nuevo') }}" method="post"> 
+    <div class="modal hide" id="myModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>{%if arMovimiento is defined and arMovimiento is not null%}Editar {%else%}Crear {%endif%} Presupuesto</h3>
+        </div>            
+        
+        {% if codigoDocumento is defined %}
+           <input name="iddocumento" type="hidden" value="{{codigoDocumento}}" />
+        {% endif %} 
+   
+        <div class="modal-body">
+            <div class="well">   
+                <table class="main-all-table-form" >
+                  <td>
+                  <tr>
+                      
+                    {% if arMovimiento is defined and arMovimiento is not null %}
+                        <tr>
+                            <strong>Código Movimiento:</strong><br/>
+                            <input type="text" class="span2" readonly="true" name="TxtCodigoMovimiento" {% if arMovimiento is defined and arMovimiento is not null %} value="{{arMovimiento.codigoMovimientoPk}}" readonly="true" {% endif %}/>
+                        <tr> 
+                            
+                        <br>
+                    {% endif %}
+                                
+                    <tr>
+                        <strong>Tercero:</strong><br>
+                        {% if arMovimiento is defined and arMovimiento is not null %} {%set Tercero =  [arMovimiento.codigoTerceroFk,arMovimiento.terceroRel.nombreCortoTercero]|join('-')  %} {% else %} {%set Tercero = ''%} {% endif %}
+                      
+                        {{ utilidades.textboxtercero(Tercero,4,true,true,'movimientos_civiles_presupuestos_nuevo') }}
+                    </tr><br />                    
+                    
+                    <tr>          
+                       <strong>Nombre:</strong><br>                        
+                       <input type="text" class="span4" name="TxtNombre" {% if arMovimiento is defined and arMovimiento is not null %} value="{{arMovimiento.soporte}}" {% endif %} placeholder="Nombre presupuesto" required/>
+                    </tr>
+                    
+                    <br>
+                    
+                    <tr>          
+                       <strong>Comentarios:</strong><br/>
+                       <textarea id="comentario" class="span5" name=comentarios {% if arMovimiento is defined and arMovimiento is not null %} value="{{arMovimiento.comentarios}}" {% endif %} rows=5 placeholder="Comentarios" width="200px"></textarea>
+                    </tr>
+
+                 </td>
+              </tr>
+            </table>
+           </div> 
+        </div>
+            
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+        </div>
+
+        </div>   
+    </form>    

@@ -1,0 +1,29 @@
+Operaciones
+    Operativos
+        - Solicitudes
+        - Pedidos
+        - Facturas
+        - Compras
+        - Entradas
+        - Salidas
+        - Traslados
+        - Cartera
+        -Tesoreria
+
+Funciones
+    - Inventario
+    - Costos
+
+Consultas
+    Inventario
+        - Kardex
+        - Existencias
+        - Disponibles
+        - Reservas
+        - Inventario Valorizado
+    Comercial
+        - Presupuestos
+
+Anotaciones
+- Con el inicio de año "Apertura del año" crear los meses y años en la tabla de presupuestos
+- Con el cierre de mes operativo meter en la tabla de presupuestos las ventas de ese mes

@@ -1,0 +1,42 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Cierres de caja detalles</h2>
+    </div>
+    <form action="{{ path('contabilidadcierrecajadetalleacciones', {'codigoCierreCaja': arCierreCaja.codigoCierreCajaPk}) }}" method="POST" novalidate>
+    <table  class="table table-bordered table-condensed" style="width: 0%">
+        <tr>
+            <th>Codigo</th>
+            <th>Movimiento</th>
+            <th>Numero</th>
+            <th>Fecha</th>
+            <th>Tercero</th>
+            <th>Total</th>
+            <th><input type="checkbox" name="ChkSeleccionarTodos" OnClick="ChequearTodos(this);"/></th>
+        </tr>
+        {% for arCierreCajaDetalle in arCierresCajaDetalle %}
+        <tr>
+            <td>{{ arCierreCajaDetalle.codigoCierreCajaDetallePk }}</td>
+            <td>{{ arCierreCajaDetalle.movimientoRel.codigoMovimientoPk }}</td>
+            <td>{{ arCierreCajaDetalle.movimientoRel.numeroMovimiento }}</td>
+            <td>{{ arCierreCajaDetalle.movimientoRel.fecha |date("Y/m/d H:i:s") }}</td>
+            <td>{{ arCierreCajaDetalle.movimientoRel.terceroRel.nombreCortoTercero }}</td>
+            <td style="text-align: right">{{ arCierreCajaDetalle.total | number_format(2, '.', ',') }}</td>   
+            <td style="text-align: center"><input type="checkbox" name="ChkSeleccionar[]" value="{{ arCierreCajaDetalle.codigoCierreCajaDetallePk }}" /></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- Botones Menu Items -->
+    <div class="btn-toolbar" style="float: right">
+        <div class="btn-group">
+            <a class="btn btn-mini" href="javascript:abrirVentana3('{{ path('contabilidadagregarmovimientocierrecaja', {'codigoCierreCaja': arCierreCaja.codigoCierreCajaPk}) }}', 'AgregarItems', 600, 900)">Agregar facturas POS</a>                
+        </div>
+        <div class="btn-group">            
+            <button class="btn btn-danger btn-mini" type="submit" name="OpSubmit" value="OpEliminar" >Eliminar</button>  
+            <a class="btn btn-mini" href="{{ path('contabilidadcierrecaja') }}">Volver</a>             
+        </div>
+    </div>
+    <!-- Fin Botones Menu Items -->
+    </form>
+{% endblock %}

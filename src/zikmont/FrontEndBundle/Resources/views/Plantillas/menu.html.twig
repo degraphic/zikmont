@@ -1,0 +1,335 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="menu">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="{{ path('inicio') }}">Zikmont C1.0.0</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+
+                    <li><a href="{{ path('logout') }}" accesskey="i"><span class="key">S</span>alir</a></li>
+
+                    <!-- CONSULTAS -->
+                    <li class="dropdown"><a  href="#" class="dropdown-toggle" accesskey="c" data-toggle="dropdown"><span class="key">C</span>onsultas<b class="caret"></b></a>
+                        <ul  class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li  class="dropdown-submenu"><a>Inventario</a>
+                                <ul  class="dropdown-menu">
+                                    <li><a href="{{ path('inventario_consultas_kardex') }}">Kardex</a></li>
+                                    <li><a href="{{ path('inventario_consultas_disponibles') }}">Disponibles</a></li>
+                                    <li><a href="{{ path('inventario_consultas_existencias') }}" >Existencias</a></li>
+                                    <li><a href="{{ path('consulta_inventario_valorizado') }}" >Inventario valorizado</a></li>
+                                    <li  class="dropdown-submenu"><a>Movimientos</a>
+                                        <ul  class="dropdown-menu">
+                                            <li  class="dropdown-submenu"><a>Solicitudes</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 8 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>                                             
+                                            <li  class="dropdown-submenu"><a>Ordenes de compra</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 5 }) }}" >Pendientes (detalles)</a></li>
+                                                    <li><a href="{{ path('movimientos_compras_requerimientos') }}" >Requerimientos</a></li>  
+                                                </ul>
+                                            </li>
+                                            <li  class="dropdown-submenu"><a>Compras</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 1 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <li  class="dropdown-submenu"><a>Entradas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 6 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>                                    
+                                            <li  class="dropdown-submenu"><a>Salidas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 2 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>                                   
+                                            <li  class="dropdown-submenu"><a>Pedidos</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 3 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>
+                                            <li  class="dropdown-submenu"><a>Facturas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('inventario_consultas_movimientos_pendientes_detalles', { 'codigoDocumentoTipo': 4 }) }}" >Pendientes (detalles)</a></li>
+                                                </ul>
+                                            </li>                                            
+                                        </ul>                                        
+                                    </li>
+                                </ul>                                    
+                            </li>
+                            <li class="dropdown-submenu"><a>Contabilidad</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('contabilidad_consultas_movimientos') }}">Movimientos</a></li>
+                                    <li><a href="{{ path('contabilidad_consultas_movimientos_historico') }}">Historico</a></li>                                    
+                                    <li><a href="{{ path('contabilidad_consultas_movimientos_resumen') }}">Resumen</a></li>
+                                </ul>
+                            </li>                                                                                 
+                            <li  class="dropdown-submenu"><a>Generales</a>
+                                <ul  class="dropdown-menu">
+                                    <li><a href="{{ path('consulta_general_analisis_general') }}">Analisis general</a></li>
+                                </ul>
+                            </li>                                                             
+                        </ul>
+                    </li>
+
+                    <!-- MAESTROS -->
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" accesskey="p" data-toggle="dropdown">Maestros<b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li  class="dropdown-submenu"><a href="#">Inventario</a>
+                                <ul  class="dropdown-menu">
+                                    <li><a href="{{ path('listarlistasprecios') }}">Listas precios</a>
+                                    <li><a href="{{ path('listarlistascostos') }}">Listas costos</a>  
+                                    <li  class="dropdown-submenu">
+                                        <a href="#">Productos</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('listaritems') }}">Detalles de Producto</a></li>
+                                            <li><a href="{{ path('inventario_consultas_kardex') }}">Marcas</a></li>
+                                            <li><a href="{{ path('inventario_consultas_kardex') }}">Lineas</a></li>
+                                            <li><a href="{{ path('inventario_consultas_kardex') }}">Grupos</a></li>
+                                            <li><a href="{{ path('inventario_consultas_kardex') }}">SubGrupos</a></li>
+                                        </ul>
+                                    </li>                                        
+                                </ul>
+                            </li>
+                            <li  class="dropdown-submenu"><a href="#">General</a>
+                                <ul  class="dropdown-menu">
+                                    <li  class="dropdown-submenu"><a href="#">Terceros</a>                                
+                                        <ul  class="dropdown-menu">
+                                            <li><a href="{{ path('listarterceros') }}">Detalles de Tercero</a>
+                                            <li><a href="{{ path('listardirecciones') }}">Direcciones de Envio</a>
+                                        </ul>
+                                    </li>                                
+                                </ul>
+                            </li>
+
+                            <li  class="dropdown-submenu">
+                                <a href="#">Contabilidad</a> 
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('maestros_contabilidad_plan_unico_cuentas') }}">Plan de cuentas</a></li>
+                                    <li><a href="{{ path('maestros_contabilidad_comprobantes') }}">Comprobantes</a></li>
+                                    <li><a href="{{ path('maestros_contabilidad_centros_costos') }}">Centros costos</a></li>
+                                    <li><a href="{{ path('maestros_contabilidad_activos_fijos_tipos') }}">Activos fijos tipos</a></li>
+                                </ul>                                
+                            </li>
+
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- PROCESOS -->
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" accesskey="p" data-toggle="dropdown">Procesos <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li class="dropdown-submenu"><a href="#">Inventario</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a>Regenerar</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inventario_procesos_regenerar_kardex') }}">Kardex</a></li>
+                                            <li><a href="{{ path('inventario_procesos_regenerar_costos') }}">Costos</a></li>
+                                            <li><a href="#">Cantidades</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><a>Cierre mes</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inventario_procesos_cierre_mes') }}">Abrir</a></li>                                            
+                                        </ul>
+                                    </li>                                                                       
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Contabilidad</a>
+                                <ul  class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a>Contabilizar</a>
+                                        <ul  class="dropdown-menu">
+                                            <li><a href="{{ path('contabilidad_procesos_contabilizar_movimientos', { 'codigoDocumentoTipo': 1 }) }}">Inventario</a></li>
+                                            <li><a href="{{ path('contabilidad_procesos_contabilizar_movimientos', { 'codigoDocumentoTipo': 4 }) }}">Facturacion</a></li>
+                                            <li><a href="{{ path('contabilidad_procesos_contabilizar_asientos') }}">Asientos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ path('contabilidad_procesos_cierre_mes') }}">Cierre Mes</a></li>
+                                    <li><a href="{{ path('contabilidadcierrecaja') }}">Cierre caja</a></li>                                   
+                                </ul>
+                            </li>                             
+                        </ul>
+                    </li>
+
+                    <!-- MOVIMIENTOS -->
+                    <li class="dropdown">
+                        <a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 1 }) }}" class="dropdown-toggle" accesskey="m" data-toggle="dropdown">Movimientos <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li class="dropdown-submenu"><a href="#">Inventario</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 8 }) }}" >Solicitudes</a></li>                                                                        
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 5 }) }}" >Ordenes de compra</a></li>
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 1 }) }}" >Compras</a></li>                                    
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 6 }) }}" >Entradas</a></li>
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 2 }) }}" >Salidas</a></li>
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 3 }) }}" >Pedidos</a></li>
+                                    <li><a href="{{ path('inventario_documentos_lista', { 'codigoTipoDocumento': 4 }) }}" >Facturas</a></li>
+  
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a>Contabilidad</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('contabilidad_asientos_lista') }}">Asientos</a></li>                		            
+                                </ul>
+                            </li>                            
+                            <li class="dropdown-submenu"><a href="#" >Comercial</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a href="#" >Cotizaciones</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>                                    
+
+                                    <li class="dropdown-submenu"><a href="#" >Contratos</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><a href="#" >Licitaciones</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>                                    
+                                </ul>
+                            </li>  
+                            
+                            <li class="dropdown-submenu"><a href="#" >Transporte</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a href="#" >Guias</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('transporte_guias_lista') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><a href="#" >Despachos</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('transporte_despachos_lista') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>                                    
+                                </ul>
+                            </li>                            
+                            
+                            <li class="dropdown-submenu"><a href="#" >Nomina</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a href="#" >Empleados</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu"><a href="#" >Novedades</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown-submenu"><a href="#" >Cartera</a>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="{{ path('inicio') }}" >Recibos de Pago</a> </li>
+                                    <li ><a href="{{ path('estadocuenta') }}" >Estados de Cuenta</a> </li>
+                                    <li ><a href="{{ path('pagosrealizados') }}" >Pagos Realizados</a> </li>
+                                    <li ><a href="{{ path('historicotransacciones') }}" >Historico de Transacciones</a> </li>
+                                </ul>
+                            </li> 
+                            
+                            <li class="dropdown-submenu"><a href="#" >Tesoreria</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a href="#" >Proveedores</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('inicio') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>    
+                            <li class="dropdown-submenu"><a href="#" >Civiles</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu"><a href="#" >Presupuestos</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('movimientos_civiles_presupuestos_lista') }}" >Ver</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>                            
+                            
+                            <li><a href="{{ path('gestiondocumental') }}" >Gestión Documental</a></li>
+                            
+                            
+                            <li class="divider"></li>
+                            <li class="nav-header">Otros</li>
+                            <li><a href="{{ path('movimientorapido', { 'codigoDocumento': 13 }) }}" >Punto de venta POS</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- HERRAMIENTAS -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" accesskey="h" data-toggle="dropdown">Herramientas <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">                            
+                            <li class="dropdown-submenu"><a href="#">Contabildad</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('contabilidad_control_retenciones') }}">Control retenciones</a></li>
+                                    <li><a href="{{ path('contabilidad_activos_fijos') }}">Activos fijos</a></li> 
+                                </ul>                            
+                            </li>
+                            <li  class="dropdown-submenu"><a>Inventario</a>
+                                <ul  class="dropdown-menu">
+                                    <li><a href="{{ path('consulta_comerciales_presupuesto') }}">Comercial presupuestos</a></li>
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+
+                    <!-- INFORMES -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" accesskey="m" data-toggle="dropdown">Informes<b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li class="dropdown-submenu"><a href="#">Cartera</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('informecarteraestadocuenta') }}" >Estado de cuenta</a></li>
+                                    <li><a href="{{ path('gestioncartera') }}" >Gestión</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Tesoreria</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('informetesoreriaestadocuenta') }}" >Estado de cuenta</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Contabilidad</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('inicio') }}" >Balance de prueba</a></li>
+                                    <li><a href="{{ path('inicio') }}" >Retenciones</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Inventario</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('inicio') }}" >Inventario Valorizado</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Comerciales</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('informecomercialventas') }}" >Ventas</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a href="#">Generales</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('informes_generales_estado_general') }}" >Estado General</a></li>
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+<!--
+                <ul class="nav pull-right">
+                    <li><a href="#" data-reveal-id="myModal" data-animation="fade">Iniciar Sesion</a></li>
+                    <li class="divider-vertical"></li>
+                </ul>
+-->
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Cierres de caja</h2>
+    </div>
+    <form id="FrmBusqueda" action="{{ path('contabilidadcierrecajaacciones') }}" method="POST" novalidate>
+    <table  class="table table-bordered table-condensed" style="width: 0%">
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Base</th>
+            <th>Ventas</th>
+            <th>Total</th>
+            <th>Comentarios</th>
+            <th>Estado</th>            
+            <th></th>
+            <th><input type="checkbox" name="ChkSeleccionarTodos" OnClick="ChequearTodos(this);"/></th>
+        </tr>
+        {% for arCierreCaja in arCierresCaja %}
+        <tr>
+            <td>{{ arCierreCaja.codigoCierreCajaPk }}</td>
+            <td>{{ arCierreCaja.fecha |date("Y/m/d") }}</td>
+            <td style="text-align: right">{{ arCierreCaja.base | number_format(2, '.', ',') }}</td>               
+            <td style="text-align: right">{{ arCierreCaja.totalVentas | number_format(2, '.', ',') }}</td>
+            <td style="text-align: right">{{ arCierreCaja.total | number_format(2, '.', ',') }}</td>
+            <td>{{ arCierreCaja.comentarios }}</td>
+            <td>{% if arCierreCaja.estadoCerrado == 1 %} <span class="label label-success">Cerrado</span> {% else %} <span class="label label-info">Abierto</span> {% endif %}</td>
+            <td style="text-align: center"><a href="{{ path('contabilidadcierrecajadetalle', { 'codigoCierreCaja': arCierreCaja.codigoCierreCajaPk }) }}"><IMG SRC="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_152_new_window.png') }}" WIDTH=20 HEIGHT=20></a></td>
+            <td style="text-align: center"><input type="checkbox" name="ChkSeleccionar[]" value="{{ arCierreCaja.codigoCierreCajaPk }}" /></td>
+        </tr>
+        {% endfor %}
+    </table>    
+    <!-- Botones Menu Items -->
+    <div class="btn-toolbar" style="float: right">
+        <div class="btn-group">            
+            <button class="btn btn-danger btn-mini" type="submit" name="OpSubmit" value="OpEliminar" >Eliminar</button>  
+        </div>
+    </div>
+    <br /><br /><br />
+    <!-- Fin Botones Menu Items -->    
+    <div class="well">
+        <table class="main-all-table-form">            
+            <tr>                
+                <td class="td-label">Fecha:</td>
+                <td class="td-in" ><input class="span2" type="text" name="TxtFecha" id="FechaDesde"/></td>
+            </tr>                
+            <tr>                
+                <td class="td-label">Base:</td>
+                <td class="td-in" ><input class="span5" name="TxtBase" onkeypress="return validarNumeros(event)" type="text" size="15"/></td>
+            </tr>    
+            <tr>                
+                <td class="td-label">Comentarios:</td>
+                <td class="td-in" ><textarea class="span5" name="TxtComentarios" rows=5 placeholder="Comentarios" width="300px"></textarea></td>
+            </tr>
+            <tr>                
+                <td></td>
+                <td class="td-in" ><button class="btn btn-mini" type="submit" name="OpSubmit" value="OpGenerar">Generar</button></td>
+            </tr>            
+        </table>
+    </div>
+    </form>  
+    
+{% endblock %}

@@ -1,0 +1,33 @@
+<script src="{{ asset('js/bootstrap-modal.js') }}"></script>
+<script>
+        $('#myModal').modal('toggle');
+</script>
+<div class="modal hide" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        {% if arListaPrecios is null  %}<h3>Nueva lista</h3> {% else %} <h3>Editar lista</h3>{% endif %}
+    </div>            
+    <div class="modal-body">
+        <div class="well">                    
+            <table class="main-all-table-form">
+                {% if arListaPrecios is null  %}                      
+                    <input type="hidden" name="LblCodigoLista" value="0">
+                    <tr>
+                        <td class="td-label">Nombre:</td>
+                        <td class="td-in" ><input class="span4" style="width:250px" name="TxtNombreLista" type="text" size="15" required/></td>                            
+                    </tr>                                            
+                {% else %}
+                    <tr>                
+                        <input type="hidden" name="LblCodigoLista" value="{{ arListaPrecios.codigoListaPrecioPk }}">
+                        <td class="td-label">Nombre:</td>
+                        <td class="td-in" ><input class="span1" style="width:250px" name="TxtNombreLista" type="text" size="15" value="{{ arListaPrecios.nombreListaPrecios }}" required/></td>
+                    </tr>                               
+                {% endif %}
+            </table>
+        </div>                
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+        <button class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar" >Guardar</button>  
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}        
+{% block content %}
+<script>
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
+</script>
+ 
+<div class="left_articles">
+        <div class="page-header">
+        <h1>Detalles de la Guia
+            {% if arGuia.estadoImpreso == 1 %} <span class="label label-info">Impresion</span> {% endif %}                         
+            {% if arGuia.estadoDespachada == 1 %} <span class="label label-info">Despachada</span> {% endif %}                         
+            {% if arGuia.estadoEntregada == 1 %} <span class="label label-info">Entregada</span> {% endif %}                         
+            {% if arGuia.estadoDescargada == 1 %} <span class="label label-info">Descargada</span> {% endif %}                         
+            {% if arGuia.estadoFacturada == 1 %} <span class="label label-info">Facturada</span> {% endif %}                         
+            {% if arGuia.estadoAnulada == 1 %} <span class="label label-important">Anulada</span> {% endif %}            
+                <small><label id="lblNombreDocumento">{{arGuia.codigoGuiaPk}}</label></small>
+            </h1>
+        </div>      
+
+        <!-- Encabezado Guia -->
+        <div class="well">
+            <table class="main-all-table-form">
+                <tr>
+
+                    <td class="td-label">Numero:</td>
+                    <td class="td-in" >{{ arGuia.codigoGuiaPk }}</td>
+
+                    <td class="td-label">Fecha:</td>
+                    <td class="td-in">{{ arGuia.fecha|date("Y/m/d H:i:s") }}</td>
+
+                    <td class="td-label">Doc. Cliente:</td>
+                    <td class="td-in" >{{ arGuia.documentoCliente }}</td>
+
+                    <td class="td-label">Flete:</td>
+                    <td class="td-in-numerico" align="right">$ {{ arGuia.valorFlete | number_format(2, '.', ',') }}</td>
+                </tr>
+            </table>
+        </div>
+        <!-- Fin Encabezado Guia -->   
+        <!-- Botones Menu Items -->
+        <div class="btn-toolbar" style="float:left">
+            <div class="btn-group">  
+               <a class="btn btn-mini" href="{{ path('guias_lista') }}" style="float:left">Volver</a>             
+            </div>  
+        </div>         
+                          
+        <!-- Fin Botones Menu Items -->         
+</div>
+{% endblock %}

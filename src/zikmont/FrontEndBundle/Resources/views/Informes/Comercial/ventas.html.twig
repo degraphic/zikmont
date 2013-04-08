@@ -1,0 +1,25 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+
+    <div class="page-header">
+        <h2>Ventas</h2>
+    </div>              
+    
+    <table  class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th>Año</th>
+            <th>Mes</th>
+            <th>SubTotal</th>
+        </tr>
+        {% for movimiento in arMovimientos %}
+            <tr>
+                <td>{{ movimiento.FechaAnnio }}</td>
+                <td>{{ movimiento.FechaMes }}</td>
+                <td style="text-align: right">{{ movimiento.subTotal | number_format(2, '.', ',')}}</td>
+            </tr>
+        {% endfor %}            
+    </table>        
+    <br />
+</div>
+{% endblock %}

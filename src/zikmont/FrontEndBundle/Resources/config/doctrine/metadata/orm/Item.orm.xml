@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Item" table="item">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="codigoItemPk" type="integer" column="codigo_item_pk">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descripcion" type="string" column="descripcion" length="300"/>
+    <field name="codigoLineaFk" type="string" column="codigo_linea_fk" length="10"/>
+    <field name="codigoGrupoFk" type="string" column="codigo_grupo_fk" length="10"/>
+    <field name="codigoSubgrupoFk" type="string" column="codigo_subgrupo_fk" length="10"/>
+    <field name="referencia" type="string" column="referencia" length="20"/>
+    <field name="centroCostos" type="boolean" column="centro_costos"/>
+    <field name="unidadVenta" type="string" column="unidad_venta" length="15"/>
+    <field name="factorVenta" type="integer" column="factor_venta"/>
+    <field name="unidadCompra" type="string" column="unidad_compra" length="15"/>
+    <field name="factorCompra" type="integer" column="factor_compra"/>
+    <field name="unidadMinima" type="string" column="unidad_minima" length="15"/>
+    <field name="factorMinimo" type="integer" column="factor_minimo"/>
+    <field name="ultimoCosto" type="float" column="ultimo_costo"/>
+    <field name="costosPromedio" type="float" column="costos_promedio"/>
+    <field name="stockMinimo" type="integer" column="stock_minimo"/>
+    <field name="stockMaximo" type="integer" column="stock_maximo"/>
+    <field name="diasStockMinimo" type="integer" column="dias_stock_minimo"/>
+    <field name="codigoMarcaFk" type="integer" column="codigo_marca_fk"/>
+    <field name="codigoProveedorFk" type="integer" column="codigo_proveedor_fk"/>
+    <field name="ean13" type="string" column="ean13" length="50"/>
+    <field name="ean14" type="string" column="ean14" length="50"/>
+    <field name="porIva" type="float" column="por_iva"/>
+    <field name="porIca" type="float" column="por_ica"/>
+    <field name="impuestoConsumo" type="float" column="impuesto_consumo"/>
+    <field name="estampilla" type="float" column="estampilla"/>
+    <field name="presentacion" type="string" column="presentacion" length="30"/>
+    <field name="pesoKilos" type="integer" column="peso_kilos"/>
+    <field name="volumen" type="integer" column="volumen"/>
+    <field name="existencia" type="integer" column="existencia"/>
+    <field name="remisionada" type="integer" column="remisionada"/>
+    <field name="reserva" type="integer" column="reserva"/>
+    <field name="cantidadCompras" type="integer" column="cantidad_compras"/>
+    <field name="cantidadPedidas" type="integer" column="cantidad_pedidas"/>
+    <field name="disponible" type="integer" column="disponible"/>
+    <field name="inactivo" type="boolean" column="inactivo"/>
+    <field name="codigoOrigenFk" type="smallint" column="codigo_origen_fk"/>
+    <field name="invima" type="string" column="invima" length="20"/>
+    <field name="fechaVenceInvima" type="datetime" column="fecha_vence_invima"/>
+    <field name="sensibilidadLuz" type="boolean" column="sensibilidad_luz"/>
+    <field name="controlEspecial" type="boolean" column="control_especial"/>
+    <field name="temperaturaMaxima" type="integer" column="temperatura_maxima"/>
+    <field name="temperaturaMinima" type="integer" column="temperatura_minima"/>
+    <field name="combustible" type="boolean" column="combustible"/>
+    <field name="corrosivo" type="boolean" column="corrosivo"/>
+    <field name="reactivo" type="boolean" column="reactivo"/>
+    <field name="fragil" type="boolean" column="fragil"/>
+    <field name="riesgoBiologico" type="boolean" column="riesgo_biologico"/>
+    <field name="toxico" type="boolean" column="toxico"/>
+    <field name="explosivo" type="boolean" column="explosivo"/>
+    <field name="arrume" type="integer" column="arrume"/>
+    <field name="medicamento" type="boolean" column="medicamento"/>
+    <field name="posicionArancelaria" type="string" column="posicion_arancelaria" length="50"/>
+    <field name="observaciones" type="string" column="observaciones" length="250"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

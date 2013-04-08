@@ -1,0 +1,31 @@
+
+<form class="well" id="FrmNuevo" action="{{path('maestros_contabilidad_activos_fijos_tipos_nuevo', { 'codigoActivoFijoTipoPk':  0 })}}" method="post"> 
+    <script>$('#myModal').modal('toggle');</script>
+    <div class="modal hide" id="myModal">    
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>{%if arCtbActivoFijoTipo is not null%}Editar activo fijo tipo{%else%}Crear activo fijo tipo{%endif%}</h3>
+        </div>    
+        <div class="modal-body">                             
+            <div class="well">      
+                <table>
+                    {% if arCtbActivoFijoTipo is defined and arCtbActivoFijoTipo is not null %}
+                    <tr>
+                        <td><strong>Código:</strong><br/></td>
+                        <td><input type="text" class="span4" readonly="true" name="TxtCodigoActivoFijoTipo" {% if arCtbActivoFijoTipo is defined and arCtbActivoFijoTipo is not null %} value="{{arCtbActivoFijoTipo.codigoActivoFijoTipoPk}}" readonly="true" {% endif %}/></td>              
+                    <tr> 
+                    {% endif %}
+                    <tr>
+                        <td><strong>Nombre:</strong><br/></td>
+                        <td><input type="text" class="span4" name="TxtNombre" {% if arCtbActivoFijoTipo is defined and arCtbActivoFijoTipo is not null %} value="{{arCtbActivoFijoTipo.nombre}}" {% endif %} placeholder="Nombre" required autofocus/></td>              
+                    <tr>                                        
+                    </table>            
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+            <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+        </div>  
+    </div>
+</form>   

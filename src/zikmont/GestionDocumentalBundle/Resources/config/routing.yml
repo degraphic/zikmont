@@ -1,0 +1,39 @@
+gestiondocumental:
+    pattern:  gestion-documental
+    defaults: { _controller: zikmontGestionDocumentalBundle:Default:index }
+    
+administrarcad:
+    pattern:  administrarcad
+    defaults: { _controller: zikmontGestionDocumentalBundle:Administracion:administrarcad }
+
+cargardatosdirectorio:
+    pattern: /cargardatosdirectorio/{codigoDirectorioPk}
+    defaults: { _controller: zikmontGestionDocumentalBundle:DirectoriosDocumentos:cargardatosdirectorio}
+    
+cargardirectorios:
+    pattern: /cargardirectorios
+    defaults: { _controller: zikmontGestionDocumentalBundle:DirectoriosDocumentos:cargardirectorios}
+    
+gestiondocumental_directorio_documentos_nuevo:
+  pattern: /gestion-documental/documento
+  defaults: { _controller: zikmontGestionDocumentalBundle:DirectoriosDocumentos:directoriodocumentosnuevo}
+  
+gestiondocumental_cargarconfiguraciondocumentos:
+  pattern: /configurarrutas
+  defaults: { _controller: zikmontGestionDocumentalBundle:ConfiguracionDirectoriosDocumentos:cargarconfiguraciondocumentos}
+  
+gestiondocumental_guardar_rutas_documentos:
+  pattern: /gestion-documental/rutas
+  defaults: { _controller: zikmontGestionDocumentalBundle:ConfiguracionDirectoriosDocumentos:guardarrutasdocumentos}
+  
+gestiondocumental_cargar_documentos:
+  pattern: /gestion-documental/documentos
+  defaults: { _controller: zikmontGestionDocumentalBundle:DocumentosDigitalizacion:cargardocumento}
+  
+gestiondocumental_digitalizar_documento:
+  pattern: /gestion-documental/digitalizar
+  defaults: { _controller: zikmontGestionDocumentalBundle:DocumentosDigitalizados:digitalizar}
+  
+gestiondocumental_abrir_directorio:
+  pattern: /gestion-documental/abrir-directorio/{codigoDirectorioPk}
+  defaults: { _controller: zikmontGestionDocumentalBundle:DirectoriosDocumentos:abrirdirectorio}

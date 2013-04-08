@@ -1,0 +1,7 @@
+parameters:
+#    zikmont_presupuestos_civiles.example.class: zikmont\PresupuestosCivilesBundle\Example
+
+services:
+#    zikmont_presupuestos_civiles.example:
+#        class: %zikmont_presupuestos_civiles.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

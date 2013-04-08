@@ -1,0 +1,97 @@
+{% extends 'zikmontFrontEndBundle::layout_app_limpio.html.twig' %}
+{% block content %}
+{% block javascripts %} 
+    <script>
+            $(document).ready(function()
+            {
+               // window.print();
+            });
+    </script>
+{% endblock %}
+    
+    
+    <div class="noprint">
+          <a href="{{ path('movimientosdetalle', { 'codigoMovimiento': arMovimiento.codigoMovimientoPk }) }}"><IMG SRC="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_210_left_arrow.png') }}" WIDTH=20 HEIGHT=20></a>
+          <hr>
+    </div>
+
+    <div class="left_articles">                
+    <p class="description"><h2>{{arEmpresa.nombreEmpresa}}</h2></p>      
+    <p>Nit {{arEmpresa.nit}}</p>
+    <p>{{arEmpresa.direccion}}</p>
+    <p>{{arEmpresa.telefono}}</p>
+    
+    <p><h4>***** PARA CAMBIO DE PRODUCTOS *****</h4></p>
+    <p>Presentar factura, NO mayor a 30 días despues</p>
+    <br/>
+    <p>Factura de Venta # {{ arMovimiento.numeroMovimiento}}</p>
+    <p>Fecha Hora: </p> 
+    =======================================
+    <table>
+        <thead>
+        <th>Descripción</th>
+        <th></th>
+        <th>Cantidad</th>
+        <th></th>
+        <th>Valor</th>
+        <th></th>
+        
+        </thead>
+        
+        {% for detalle in arDetalles%}
+        <tr>
+            <td>{{detalle.itemMD.Descripcion}}</td>
+            <td></td>
+            <td>{{detalle.Cantidad}}</td>
+            <td></td>
+            <td>{{detalle.Precio}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    
+    =======================================</br>
+    <table>
+        <thead>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        </thead>
+        <tr>
+            <td><b>Bas 16% $</b></td> 
+            <td>{{arMovimiento.subTotal}}</td> 
+            
+            <td><b>IVA $</b></td>
+            <td>{{arMovimiento.valorTotalIva}}</td> 
+        </tr>
+        
+        <tr>
+            <td><b>T. Base $ </b></td>
+            <td>{{arMovimiento.subTotal}}  </td> 
+            
+            <td><b>T. IVA $ </b> </td>
+            <td>{{arMovimiento.valorTotalIva}}</td> 
+        </tr>
+  
+    =======================================<br/>
+    <b>Total</b> {{arMovimiento.total}}<br/>
+    =======================================<br/>
+    </br>
+    
+    <p>Resol DIAN No {{arEmpresa.resolucionDian}}</p>
+    <p>HABILITA FACTURA  {{arEmpresa.facturaDesde}} AL  {{arEmpresa.facturaHasta}}</p>
+    
+    <tr>    
+
+        <td style="width: 100px" colspan="40">
+        <br>    
+             <p><b> {{arEmpresa.tipoRegimen}}</b></p>
+             <p> {{arEmpresa.comentarioTipoRegimen}}</p>
+        </td>
+    </tr>
+    </table>
+    
+    </div>
+    
+    
+{% endblock %}

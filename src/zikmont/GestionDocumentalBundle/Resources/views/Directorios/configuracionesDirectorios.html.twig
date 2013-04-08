@@ -1,0 +1,49 @@
+<script>
+    $('#myModal').modal('toggle');
+    </script>
+    <form class="well" id="FrmNuevo" action="{{path('gestiondocumental_guardar_rutas_documentos')}}" method="post" > 
+        <div class="modal hide" id="myModal">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Configuración Directorios Documentos:</h3>
+            </div>    
+
+            <div class="modal-body">
+                <div class="well">   
+                    <table>
+                        <tr>          
+                            <td><strong>Generales:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDirectorioDocumentos" {% if arConfiguracion is defined and arConfiguracion is not null %} value="{{arConfiguracion.rutaDirectorioDocumentos}}" {% endif %} placeholder="Dirección Directorio Documentos" width="300px"></td>
+                        </tr>                                
+
+                        <tr>          
+                            <td><strong>Operativos:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDirectorioDocumentosOperativos" {% if arConfiguracion is defined and arConfiguracion is not null %} value="{{arConfiguracion.rutaDirectorioDocumentosOperativos}}"  {% endif %} placeholder="Dirección Directorio Documentos Operativos"  width="300px"></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Productos:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDirectorioDocumentosProductos" {% if arConfiguracion is defined and arConfiguracion is not null %} value="{{arConfiguracion.rutaDirectorioDocumentosProductos}}" {% endif %} placeholder="Dirección Directorio Documentos de Productos" width="300px"></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Terceros:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDirectorioDocumentosTerceros" {% if arConfiguracion is defined and arConfiguracion is not null %} value="{{arConfiguracion.rutaDirectorioDocumentosTerceros}}" {% endif %} placeholder="Dirección Directorio Documentos de Terceros" width="300px"></input></td>                
+                        </tr>                       
+
+                        <tr>          
+                            <td><strong>Contables:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtDirectorioDocumentosContables" {% if arConfiguracion is defined and arConfiguracion is not null %} value="{{arConfiguracion.rutaDirectorioDocumentosContables}}" {% endif %} placeholder="Dirección Directorio Documentos de Contables"  width="300px"></input></td>                
+                        </tr>    
+                    </table>            
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+                <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+            </div>
+
+        </div>
+    </form>       

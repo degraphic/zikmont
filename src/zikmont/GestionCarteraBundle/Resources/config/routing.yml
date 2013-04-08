@@ -1,0 +1,3 @@
+zikmontGestionCarteraBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: zikmontGestionCarteraBundle:Default:index }

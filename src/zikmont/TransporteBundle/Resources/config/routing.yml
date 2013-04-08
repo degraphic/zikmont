@@ -1,0 +1,11 @@
+transporte_guias_lista:
+  pattern: /guias/lista/
+  defaults: { _controller: zikmontTransporteBundle:Guias:lista }  
+
+transporte_guias_detalle:
+  pattern: /guiadetalle/{codigoGuia}
+  defaults: { _controller: zikmontTransporteBundle:Guias:guiadetalle}   
+
+transporte_despachos_lista:
+  pattern: /despachos/lista/
+  defaults: { _controller: zikmontTransporteBundle:Despachos:lista } 

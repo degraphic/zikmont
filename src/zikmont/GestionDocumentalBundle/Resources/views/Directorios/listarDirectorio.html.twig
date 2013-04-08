@@ -1,0 +1,67 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="left_articles">                
+
+        <form id="FrmBusqueda" action="{{ path('listarterceros') }}" method="POST" novalidate>
+            
+            
+        <div class="page-header">
+            <h2>Listado de Terceros</h2>
+            <a  class="btn btn-mini" id="{{ path('cargardatostercero', { 'codigoTerceroPk':  0 }) }}"><image src="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_190_circle_plus.png') }}" width=20 height=20> Crear Tercero</a>
+        </div>
+            
+        <div class="well">
+            <table class="main-all-table-form">
+                <tr>
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">NIT/Cédula</span>
+                        <input type="text" class="span2" name="TxtCodigoTercero" {% if ultimo_nit is defined %} value="{{ultimo_nit}}" {% endif%} onkeypress="return validarNumeros(event)" onclick="this.select()"  size="15"/>
+                    </div>
+                </tr>
+                
+                <tr>                    
+                    <div class="input-prepend">
+                        <span class="add-on-zikmont">Descripcion</span>
+                        <input type="text" class="span6" name="TxtNombreTercero" {% if ultimo_tercero is defined %} value="{{ultimo_tercero}}" {% endif%} onclick="this.select()" size="15" autofocus="true"/>
+                    </div>
+                </tr>
+                
+                <tr>                
+                    <td></td>
+                    <td><button class="btn btn-primary" type="submit" name="OpSubmit" value="OpActualizarDetalles">Buscar</button></td>
+                </tr>            
+            </table>
+        </div>
+        </form>
+        
+        <table  class="table table-striped table-bordered table-condensed"> 
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre Corto</th>                
+                <th>Precios</th>
+                <th>Costos</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+
+        {% for tercero in arTerceros %}
+            <tr>
+                <td>{{ tercero.codigoTerceroPk }}</td>
+                <td>{{ tercero.nombreCortoTercero }}</td>
+                <td>{{ tercero.codigoListaPrecioFk }}</td>
+                <td></td>
+                <td>{{ tercero.direccion }}</td>
+                <td>{{ tercero.telefono }}</td>
+                <td>{{ tercero.celular }}</td>
+                <td>{{ tercero.email}}</td>
+                <td style="text-align: center"><a id="{{ path('cargardatostercero', { 'codigoTerceroPk':  tercero.codigoTerceroPk }) }}" ><img src="{{ asset('bundles/zikmont/imagenes/tema1/glyphicons_151_edit.png') }}" width=20 height=20></a></td>
+            </tr>   
+        {% endfor %}            
+        </table>   
+
+        </div>
+{% endblock %}

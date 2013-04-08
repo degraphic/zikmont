@@ -1,0 +1,14 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}        
+{% block content %}
+
+<div class="left_articles">
+    <div class="page-header">
+        <h1>Requerimientos de compras</h1>
+    </div>      
+    <form id="FrmGenerar" action="{{ path('movimientos_compras_requerimientos') }}" method="POST" novalidate>
+    <div class="well">
+        <button class="btn btn-mini btn-primary" type="submit" name="OpSubmit" value="OpGenerar">Generar requerimientos</button>
+    </div>
+    </form>  
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Cierres de mes</h2>
+    </div>  
+    <form action="{{ path('contabilidad_procesos_cierre_mes') }}" method="POST" novalidate>
+        <table  class="table table-bordered table-condensed" style="width: 0%"> 
+            <tr>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Cerrado</th>                
+            </tr>
+            {% for arCierreMes in arCierresMes %}
+            <tr>
+                <td>{{ arCierreMes.annio }}</td>
+                <td>{{ arCierreMes.mes }}</td>
+                <td>{% if arCierreMes.estadoCerrado == 1 %} <span class="label label-success">Cerrado</span> {% else %} <span class="label label-info">Abierto</span> {% endif %}</td>
+                <td><button class="btn btn-success btn-mini" type="submit" name="OpSubmit" value="{{ arCierreMes.codigoCierreMesPk }}" >Cerrar</button></td>            
+            </tr>   
+            {% endfor %}            
+        </table> 
+    </form>
+{% endblock %}

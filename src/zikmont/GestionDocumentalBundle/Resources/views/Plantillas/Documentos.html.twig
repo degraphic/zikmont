@@ -1,0 +1,45 @@
+<script>
+    $('#myModal').modal('toggle');
+    </script>
+    <form class="well" id="FrmNuevo" action="{{path('gestiondocumental_directorio_documentos_nuevo')}}" method="post" > 
+        <div class="modal hide" id="myModal">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Documentos:</h3>
+            </div>    
+
+            <div class="modal-body">
+                <div class="well">   
+                    <table>
+                        <tr>          
+                            <td><strong>Nombre</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtNombreDocumento" {% if arDocumento is defined and arDocumento is not null %} value="{{arDocumento.nombreDocumento}}" {% endif %} placeholder="Dirección Directorio Documentos" width="300px"></td>
+                        </tr>                                
+
+                        <tr>          
+                            <td><strong>Fecha Creación:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtFechaCreacion" {% if arDocumento is defined and arDocumento is not null %} value="{{arDocumento.fechaCreado}}" {% else %} value="{{ "now"|date("m/d/Y") }}" {% endif %} readonly="true"  width="300px"></input></td>                
+                        </tr>                        
+
+                        <tr>          
+                            <td><strong>Usuario:</strong><br/></td>
+                            <td><input type="text" class="span4" name="TxtUsuario" {% if arDocumento is defined and arDocumento is not null %} value="{{arDocumento.nombreUsuario}}" {% endif %} placeholder="Usuario" width="300px"></input></td>                
+                        </tr>                       
+
+
+                        <tr>          
+                            <td><strong>Inactivo:</strong><br/></td>
+                            <td><input type="checkbox" class="span4" name="ChkInactivo" {% if arDocumento is defined and arDocumento is not null %} value="{{arDocumento.inactivo}}" {% endif %}  width="300px"></input></td>                
+                        </tr>   
+                    </table>            
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Cancelar</a>                
+                <button id="link_guardar" class="btn btn-primary" type="submit" name="OpSubmit" value="OpGuardar">Guardar</button>
+            </div>
+
+        </div>
+    </form>       

@@ -1,0 +1,40 @@
+       
+{% macro textboxcuentas(valor,span,requerido,autofocus,id) %}
+
+    <script type="text/javascript">
+        $().ready(function() {
+            $("#{{id}}").autocomplete("{{path('buscarcuentas')}}", {
+                width: 400,
+                selectFirst: false
+            });
+        })
+    </script> 
+
+    <input id="{{id}}"  name="TxtCuenta" style="width:150px" type="{{ tipo | default('text') }}" class="span{{span}}" value="{{ valor }}" {{ requerido ? 'required="required"' :'false' }} placeholder="Cuenta" {{ autofocus ? 'autofocus="required"' :'false' }}/>
+
+{% endmacro %}
+    
+{% macro textboxtercero(valor,span,requerido,autofocus,id) %}   
+    <script type="text/javascript">
+   $().ready(function() {
+        $("#{{id}}").autocomplete("{{path('buscarterceros')}}", {
+                width: 400,
+                selectFirst: false
+        });
+        
+        
+        
+        $('#{{id}}').change(function() {
+            
+            // Asignacion del texto seleccionado
+            $("#{{id}}").result(log).next().click(function() {
+                $(this).prev().search();
+            });
+            
+        });
+   })
+    </script> 
+
+    <input id="{{id}}"  name="TxtCodigoTercero"  type="{{ tipo | default('text') }}" class="span{{span}}" value="{{ valor }}" {{ requerido ? 'required="required"' :'true' }} placeholder="Tercero" {{ autofocus ? 'autofocus="required"' :'true' }}/>
+
+{% endmacro %}

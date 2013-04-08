@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('bundles/zikmont/css/menukasten.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/docs.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/prettify.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/reveal.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/barra/jx.stylesheet.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('bundles/zikmont/css/pro_dropdown_2.css') }}" type="text/css" rel="stylesheet" />
+
+<link href="{{ asset('css/UI/Datepicker.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+<div id="myModal" class="reveal-modal">
+    <h1>Cerrar Sesión</h1>
+    <hr>
+
+    <p>Recuerde cambiar su contraseña periodicamente...</p>
+
+    <input class="btn btn-primary" type="submit" value="Aceptar" />
+    <input class="btn" type="submit" class="close-reveal-modal" value="Cancelar" />
+
+    <hr>
+
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div class="container">          
+    {% render "zikmontFrontEndBundle:Mensajes:mostrar" %}    
+    {% block content %}
+
+    {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+zikmontMensajesBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: zikmontMensajesBundle:Default:index }
+    
+impresiones_prueba:
+  pattern: /impresiones/prueba/
+  defaults: { _controller: zikmontImpresionesBundle:Impresiones:imprimirPrueba}  
+  requirements:
+        id:  \d+      

@@ -1,0 +1,119 @@
+
+#Asientos
+contabilidad_asientos_nuevo:
+  pattern: /contabilidad/asientos/nuevo/
+  defaults: { _controller: zikmontContabilidadBundle:Asientos:asientosNuevo} 
+  requirements:
+        id:  \d+
+
+contabilidad_asientos_lista:
+  pattern: /contabilidad/asientos/lista/
+  defaults: { _controller: zikmontContabilidadBundle:Asientos:lista} 
+  requirements:
+        id:  \d+                  
+        
+contabilidad_asientos_detalles:
+  pattern: /contabilidad/asientos/detalles/{codigoAsiento}
+  defaults: { _controller: zikmontContabilidadBundle:Asientos:asientosDetalles} 
+  requirements:
+        id:  \d+                   
+
+#Herramientas
+contabilidad_activos_fijos:
+  pattern: /contabilidad/activos/fijos/
+  defaults: { _controller: zikmontContabilidadBundle:ActivosFijos:lista} 
+  requirements:
+        id:  \d+
+
+contabilidad_activos_fijos_nuevo:
+  pattern: /contabilidad/activos/fijos/nuevo/
+  defaults: { _controller: zikmontContabilidadBundle:ActivosFijos:nuevo} 
+  requirements:
+        id:  \d+
+
+contabilidad_control_retenciones:
+  pattern: /contabilidad/control/retenciones/
+  defaults: { _controller: zikmontContabilidadBundle:Control:retenciones}  
+  requirements:
+        id:  \d+
+
+contabilidad_control_retenciones_nuevo_comentario:
+  pattern: /contabilidad/control/retenciones/nuevo/comentario/{CodigoControlRetenciones}
+  defaults: { _controller: zikmontContabilidadBundle:Control:retencionesNuevoComentario}  
+  requirements:
+        id:  \d+
+
+#Consultas
+contabilidad_consultas_movimientos:
+  pattern: /contabilidad/consultas/movimientos/
+  defaults: { _controller: zikmontContabilidadBundle:Consultas:movimientos} 
+  requirements:
+        id:  \d+
+
+contabilidad_consultas_movimientos_historico:
+  pattern: /contabilidad/consultas/movimientos/historico/
+  defaults: { _controller: zikmontContabilidadBundle:Consultas:movimientosHistorico} 
+  requirements:
+        id:  \d+        
+
+contabilidad_consultas_movimientos_resumen:
+  pattern: /contabilidad/consultas/movimientos/resumen/
+  defaults: { _controller: zikmontContabilidadBundle:Consultas:movimientosResumen} 
+  requirements:
+        id:  \d+        
+
+#procesos
+contabilidad_procesos_contabilizar_asientos:
+  pattern: /contabilidad/procesos/contabilizar/asientos/
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:contabilizarAsientos}  
+  requirements:
+        id:  \d+ 
+        
+contabilidad_procesos_contabilizar_movimientos:
+  pattern: /contabilidad/procesos/contabilizar/movimientos/{codigoDocumentoTipo}
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:contabilizarMovimientos}  
+  requirements:
+        id:  \d+         
+        
+contabilidad_procesos_cierre_mes:
+  pattern: /contabilidad/procesos/cierre/mes/
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:cierreMes}  
+  requirements:
+        id:  \d+
+        
+#Otros        
+contabilidadcierrecaja:
+  pattern: /contabilidadprocesocierrecaja/
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:cierrecaja}  
+  requirements:
+        id:  \d+
+
+contabilidadcierrecajaacciones:
+  pattern: /contabilidadprocesocierrecajaacciones/
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:cierrecajaacciones}  
+  requirements:
+        id:  \d+        
+        
+contabilidadcierrecajadetalle:
+  pattern: /contabilidadcierrecajadetalle/{codigoCierreCaja}
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:cierrecajadetalle}  
+  requirements:
+        id:  \d+        
+
+contabilidadcierrecajadetalleacciones:
+  pattern: /contabilidadcierrecajadetalleacciones/{codigoCierreCaja}
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:cierrecajadetalleacciones}  
+  requirements:
+        id:  \d+
+
+contabilidadagregarmovimientocierrecaja:
+  pattern: /contabilidadagregarmovimientocierrecaja/{codigoCierreCaja}
+  defaults: { _controller: zikmontContabilidadBundle:Procesos:agregarMovimientoCierreCaja}        
+        
+buscarterceros:
+    pattern:  /buscarterceros
+    defaults: { _controller: zikmontFrontEndBundle:Terceros:buscarterceros }        
+    
+buscarcuentas:
+  pattern: /buscarcuentas
+  defaults: { _controller: zikmontContabilidadBundle:Contabilidad:buscarcuentas}    

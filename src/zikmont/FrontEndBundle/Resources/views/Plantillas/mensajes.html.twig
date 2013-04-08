@@ -1,0 +1,53 @@
+<div id="mensaje" style="display: none">
+                
+       <script type='text/javascript'> 
+           $('#mensaje').fadeIn(1000);
+       </script>
+
+    {% if app.session.hasFlash('noticemodal') %}
+       
+        <div id="dialog-modal" title="Basic modal dialog">
+            <p>{{ app.session.flash('noticemodal') }}</p>
+        </div>
+         
+        <div class="flash-notice">
+            {{ app.session.flash('noticemodal') }}
+        </div>
+    {% endif %}     
+
+    {% if app.session.hasFlash('informacion') %}
+        
+       <br>
+       <div id="informacion" class="alert alert-info fade in" >
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">
+                ¡INFORMACION!
+            </h4>
+            
+            <p>{{ app.session.flash('informacion') }}</p>
+        </div>
+    {% endif %}     
+       
+    {% if app.session.hasFlash('completado') %}
+        
+       <br>
+       <div id="informacion" class="alert alert-success fade in" >
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">
+                ¡COMPLETADO!
+            </h4>
+            <p>{{ app.session.flash('completado') }}</p>
+        </div>
+    {% endif %} 
+       
+    {% if app.session.hasFlash('error') %}
+        
+       <br>
+       <div id="informacion" class="alert alert-block alert-error fade in" >
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">
+                ¡ERROR!
+            </h4>
+            <p>{{ app.session.flash('error') }}</p>
+        </div>
+    {% endif %} 

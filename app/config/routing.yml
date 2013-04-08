@@ -1,0 +1,48 @@
+zikmontPresupuestosCivilesBundle:
+    resource: "@zikmontPresupuestosCivilesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontTesoreriaBundle:
+    resource: "@zikmontTesoreriaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontCarteraBundle:
+    resource: "@zikmontCarteraBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontInventarioBundle:
+    resource: "@zikmontInventarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontSeguridadBundle:
+    resource: "@zikmontSeguridadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontTransporteBundle:
+    resource: "@zikmontTransporteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontGestionDocumentalBundle:
+    resource: "@zikmontGestionDocumentalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontGestionCarteraBundle:
+    resource: "@zikmontGestionCarteraBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#zikmontMensajesBundle:
+#    resource: "@zikmontMensajesBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#zikmontImpresionesBundle:
+#    resource: "@zikmontImpresionesBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+zikmontContabilidadBundle:
+    resource: "@zikmontContabilidadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zikmontFrontEndBundle:
+    resource: "@zikmontFrontEndBundle/Resources/config/routing.yml"
+    prefix:   /
+

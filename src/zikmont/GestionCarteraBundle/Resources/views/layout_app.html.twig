@@ -1,0 +1,18 @@
+{% extends 'zikmontFrontEndBundle::layout_app_limpio.html.twig' %}
+
+
+{% block body %}
+
+{% render "zikmontFrontEndBundle:Menu:documentos" %}
+
+<div class="container">
+    
+    <div id="mensaje"></div>  
+    
+    <div id="mensaje2" style="display: none"></div>
+    
+    {% block content %}
+
+    {% endblock %}
+</div>           
+{% endblock %}

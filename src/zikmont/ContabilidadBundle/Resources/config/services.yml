@@ -1,0 +1,7 @@
+parameters:
+#    zikmont_contabilidad.example.class: zikmont\ContabilidadBundle\Example
+
+services:
+#    zikmont_contabilidad.example:
+#        class: %zikmont_contabilidad.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,57 @@
+{% macro textboxtercero(valor,span,requerido,autofocus,id) %}
+
+<script type="text/javascript">
+   $().ready(function() {
+        $("#{{id}}").autocomplete("{{path('especiales_buscar_terceros_ajax')}}", {
+                width: 400,
+                selectFirst: false
+        });
+        
+        function log(event, data, formatted) {
+            if ($('#direcciones').length){
+                // Busqueda de la direccion
+                $.get("{{path('especiales_buscar_direcciones_ajax')}}",{q :formatted, ajax: 'true'}, function(j){
+                    var options = '';
+                    $("select#direcciones").empty();
+
+                    select = $("select#direcciones").get(0);
+                    select.options[0] = new Option('Seleccione una Dirección', '');
+
+                    $("#direcciones").focus();
+
+                    $("select#direcciones").append(j);
+                 })
+            }
+        }
+        
+        $('#{{id}}').change(function() {
+            
+            // Asignacion del texto seleccionado
+            $("#{{id}}").result(log).next().click(function() {
+                $(this).prev().search();
+            });
+            
+        });
+   })
+    </script> 
+
+    <input id="{{id}}"  name="{{id}}"  type="{{ tipo | default('text') }}" class="span{{span}}" value="{{ valor }}" {{ requerido ? 'required="required"' :'true' }} placeholder="Tercero" {{ autofocus ? 'autofocus="required"' :'true' }}/>
+
+{% endmacro %}
+
+
+
+{% macro textboxitem(valor,span,requerido,autofocus) %}
+
+    <script type="text/javascript">
+       $().ready(function() {
+           $("#codigoitem").autocomplete("{{path('buscaritems')}}", {
+                    width: 400,
+                    selectFirst: false
+            });        
+       })
+        </script> 
+
+        <input type="text" id="codigoitem" class="span{{span}}" name="TxtCodigoItem" type="{{ tipo | default('text') }}" value="{{valor}}" placeholder="Código Item" {{ requerido ? 'required="required"' :'true' }}  {{ autofocus ? 'autofocus="required"' :'false' }}>
+
+{% endmacro %}

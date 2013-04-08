@@ -1,0 +1,252 @@
+zikmontFrontEndBundle_homepage:
+    pattern:  /
+    defaults: { _controller: zikmontFrontEndBundle:Default:index }
+
+inicio:
+    pattern:  /
+    defaults: { _controller: zikmontFrontEndBundle:Default:index }      
+
+movimientorapido:
+  pattern: /movimientorapido/{codigoDocumento}
+  defaults: { _controller: zikmontFrontEndBundle:Movimientos:movimientorapidonuevo} 
+  requirements:
+        id:  \d+  
+ 
+#  ENCABEZADO DE MOVIMIENTO                
+
+movimientos_compras_requerimientos:
+  pattern: /movimientos/compras/requerimientos/
+  defaults: { _controller: zikmontFrontEndBundle:Movimientos:comprasrequerimientos}   
+  
+cargardatosmovimiento:
+  pattern: /cargardatosmovimiento/{codigoMovimientoPk}
+  defaults: { _controller: zikmontFrontEndBundle:Movimientos:cargardatosmovimiento}    
+  
+imprimirfacturapos:
+  pattern: /imprimirfacturapos/{codigoMovimientoPk}
+  defaults: { _controller: zikmontFrontEndBundle:Movimientos:imprimirfacturapos}    
+
+
+movimientos_civiles_presupuestos_lista:
+  pattern: /movimientos/civiles/presupuestos/lista/
+  defaults: { _controller: zikmontFrontEndBundle:MovimientosCivilesPresupuestos:lista} 
+  requirements:
+        id:  \d+  
+        
+movimientos_civiles_presupuestos_nuevo:
+  pattern: /movimientos/civiles/presupuestos/nuevo/
+  defaults: { _controller: zikmontFrontEndBundle:MovimientosCivilesPresupuestos:nuevo}   
+  
+movimientos_civiles_presupuestos_detalle:
+  pattern: /movimientos/civiles/presupuestos/detalle/{codigoMovimientoCivilPresupuesto}
+  defaults: { _controller: zikmontFrontEndBundle:MovimientosCivilesPresupuestos:detalle}  
+
+movimientos_civiles_presupuestos_agregar_item:
+  pattern: /movimientos/civiles/presupuestos/agregar/item/{codigoMovimientoCivilPresupuesto}
+  defaults: { _controller: zikmontFrontEndBundle:MovimientosCivilesPresupuestos:agregarItem}    
+        
+#  DETALLES DE MOVIMIENTO 
+          
+
+configuraciones:
+  pattern: /configuraciones
+  defaults: { _controller: zikmontFrontEndBundle:Configuraciones:configuraciones}   
+  
+utilidades:
+  pattern: /utilidades
+  defaults: { _controller: zikmontFrontEndBundle:Utilidades:index}    
+
+
+#CONSULTAS  
+
+consulta_inventario_valorizado:
+  pattern: /consulta/inventario/valorizado
+  defaults: { _controller: zikmontFrontEndBundle:Consultas:inventarioValorizado}  
+  requirements:
+        id:  \d+        
+        
+consulta_general_analisis_general:
+  pattern: /consulta/general/analisis/general
+  defaults: { _controller: zikmontFrontEndBundle:Consultas:generalAnalisisGeneral} 
+
+consulta_comerciales_presupuesto:
+  pattern: /consulta/comerciales/presupuesto
+  defaults: { _controller: zikmontFrontEndBundle:Consultas:comercialesPresupuestos}  
+
+# INFORMES
+
+informes_generales_estado_general:
+  pattern: /informes/generales/estado-general
+  defaults: { _controller: zikmontFrontEndBundle:Informes:generalesEstadoGeneral}
+
+informecarteraestadocuenta:
+  pattern: /informecarteraestadocuenta
+  defaults: { _controller: zikmontFrontEndBundle:Informes:carteraestadocuenta}    
+  
+informetesoreriaestadocuenta:
+  pattern: /informetesoreriaestadocuenta
+  defaults: { _controller: zikmontFrontEndBundle:Informes:tesoreriaestadocuenta}    
+  
+informecontabilidadretenciones:
+  pattern: /informecontabilidadretenciones
+  defaults: { _controller: zikmontFrontEndBundle:Informes:contabilidadretenciones}   
+  
+informecomercialventas:
+  pattern: /informecomercialventas
+  defaults: { _controller: zikmontFrontEndBundle:Informes:comercialventas}         
+  
+  
+  
+gestioncartera:
+    pattern:  /gestioncartera
+    defaults: { _controller: zikmontGestionCarteraBundle:Gestion:index }
+    
+estadocuenta:
+    pattern:  /estadocuenta
+    defaults: { _controller: zikmontGestionCarteraBundle:EstadoCuenta:index }    
+    
+pagosrealizados:
+    pattern:  /pagosrealizados
+    defaults: { _controller: zikmontGestionCarteraBundle:PagosRealizados:index }    
+    
+historicotransacciones:
+    pattern:  /historicotransacciones
+    defaults: { _controller: zikmontGestionCarteraBundle:HistoricoTransacciones:index }    
+    
+buscardocumentos:
+    pattern:  /buscardocumento
+    defaults: { _controller: zikmontGestionDocumentalBundle:BuscarDocumentos:index }
+   
+#   DIRECCIONES
+    
+listardirecciones:
+    pattern:  /listardirecciones
+    defaults: { _controller: zikmontFrontEndBundle:Direcciones:listardirecciones }
+    
+cargardatosdireccion:
+    pattern:  /cargardatosdireccion/{codigoDireccionPk}
+    defaults: { _controller: zikmontFrontEndBundle:Direcciones:cargardatosdireccion }
+    
+direccionnueva:
+    pattern:  /direccionnueva
+    defaults: { _controller: zikmontFrontEndBundle:Direcciones:direccionnueva }
+    
+#  ITEM
+listaritems:
+    pattern:  /listaritems
+    defaults: { _controller: zikmontFrontEndBundle:Items:ListarItem }
+  
+buscaritems:
+  pattern: /buscaritems
+  defaults: { _controller: zikmontFrontEndBundle:Items:buscaritems } 
+
+itemnuevo:
+    pattern:  /itemnuevo
+    defaults: { _controller: zikmontFrontEndBundle:Items:itemnuevo }
+    
+cargardatositem:
+  pattern: /cargardatositem/{codigoItemPk}
+  defaults: { _controller: zikmontFrontEndBundle:Items:cargardatositem }  
+
+#  TERCEROS
+listarterceros:
+    pattern:  /listarterceros
+    defaults: { _controller: zikmontFrontEndBundle:Terceros:ListarTerceros }    
+    
+terceronuevo:
+  pattern: /terceronuevo
+  defaults: { _controller: zikmontFrontEndBundle:Terceros:terceronuevo} 
+  
+cargardatostercero:
+  pattern: /cargardatostercero/{codigoTerceroPk}
+  defaults: { _controller: zikmontFrontEndBundle:Terceros:cargardatostercero}  
+  
+# Listas Costos
+listarlistascostos:
+    pattern:  /listarlistascostos
+    defaults: { _controller: zikmontFrontEndBundle:ListasCostos:listarlistascostos }  
+    
+nuevalistascostos:
+    pattern:  /nuevalistascostos/{codigoListaCostos}
+    defaults: { _controller: zikmontFrontEndBundle:ListasCostos:nuevalistascostos } 
+    
+listarlistascostosdetalles:
+    pattern:  /listarlistascostosdetalles/{codigoListaCostos}/
+    defaults: { _controller: zikmontFrontEndBundle:ListasCostos:listarlistascostosdetalles }     
+
+listarlistascostosdetalleseditar:
+    pattern:  /listarlistascostosdetalleseditar/{codigoListaCostosDetalle}
+    defaults: { _controller: zikmontFrontEndBundle:ListasCostos:listarlistascostosdetalleseditar}         
+    
+listascostosdetallesacciones:
+    pattern:  /listascostosdetallesacciones/{codigoListaCostos}
+    defaults: { _controller: zikmontFrontEndBundle:ListasCostos:listascostosdetallesacciones }    
+    
+# Listas Precios
+listarlistasprecios:
+    pattern:  /listarlistasprecios
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:listarlistasprecios }  
+
+nuevalistasprecios:
+    pattern:  /nuevalistasprecios/{codigoListaPrecios}
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:nuevalistasprecios } 
+    
+listarlistaspreciosdetalles:
+    pattern:  /listarlistaspreciosdetalles/{codigoListaPrecio}/{codigoListaPrecioDetalle}
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:listarlistaspreciosdetalles, codigoListaPrecioDetalle:0 }     
+
+listarlistaspreciosdetalleseditar:
+    pattern:  /listarlistaspreciosdetalleseditar/{codigoListaPrecioDetalle}
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:listarlistaspreciosdetalleseditar}         
+    
+listaspreciosdetallesacciones:
+    pattern:  /listaspreciosdetallesacciones/{codigoListaPrecio}
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:listaspreciosdetallesacciones }             
+
+listarmarcas:
+    pattern:  /listaspreciosdetallesacciones/
+    defaults: { _controller: zikmontFrontEndBundle:ListasPrecios:listaspreciosdetallesacciones }         
+    
+#MAESTROS
+maestros_contabilidad_plan_unico_cuentas:
+    pattern:  /maestros/contabilidad/puc/
+    defaults: { _controller: zikmontContabilidadBundle:PlanUnicoCuentas:listar }
+
+maestros_contabilidad_plan_unico_cuentas_nuevo:
+    pattern:  /maestros/contabilidad/puc/nuevo/
+    defaults: { _controller: zikmontContabilidadBundle:PlanUnicoCuentas:nuevo }
+    
+maestros_contabilidad_comprobantes:
+    pattern:  /maestros/contabilidad/comprobantes/
+    defaults: { _controller: zikmontContabilidadBundle:Comprobantes:listar }    
+    
+maestros_contabilidad_comprobantes_nuevo:
+    pattern:  /maestros/contabilidad/comprobantes/nuevo/{codigoComprobantePk}
+    defaults: { _controller: zikmontContabilidadBundle:Comprobantes:nuevo }
+    
+maestros_contabilidad_centros_costos:
+    pattern:  /maestros/contabilidad/centros_costos/
+    defaults: { _controller: zikmontContabilidadBundle:CentrosCostos:listar }    
+    
+maestros_contabilidad_centro_costos_nuevo:
+    pattern:  /maestros/contabilidad/centro_costos/nuevo/{codigoCentroCostosPk}
+    defaults: { _controller: zikmontContabilidadBundle:CentrosCostos:nuevo }    
+
+maestros_contabilidad_activos_fijos_tipos:
+    pattern:  /maestros/contabilidad/activos_fijos_tipos/
+    defaults: { _controller: zikmontContabilidadBundle:ActivosFijosTipos:listar }    
+    
+maestros_contabilidad_activos_fijos_tipos_nuevo:
+    pattern:  /maestros/contabilidad/activos_fijos_tipos/nuevo/{codigoActivoFijoTipoPk}
+    defaults: { _controller: zikmontContabilidadBundle:ActivosFijosTipos:nuevo }    
+ 
+    
+# Utilidades
+
+especiales_buscar_terceros_ajax:
+    pattern:  /especiales/buscar_terceros/
+    defaults: { _controller: zikmontFrontEndBundle:Especiales:buscarterceros }
+    
+especiales_buscar_direcciones_ajax:
+    pattern:  /especiales/buscar_direcciones/
+    defaults: { _controller: zikmontFrontEndBundle:Especiales:buscardirecciones }    

@@ -1,0 +1,118 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}    
+
+<div class="page-header">
+    <h1>Nuevo activo fijo: </h1>
+</div>                
+{% import 'zikmontContabilidadBundle:Plantillas:macros.html.twig' as utilidades %}    
+<form class="well" action="{{ path('contabilidad_activos_fijos_nuevo') }}" method="post" novalidate >
+    <table class="main-all-table-form">
+        <tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Nombre:</span>
+                    <input type="text" class="span2" name="TxtNombre"  >
+                </div>
+            </tr>            
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Tipo</span>
+                     <select name="CboActivoFijoTipo">
+                        <option value="">Seleccione un tipo</option>
+                        {% for arCtbActivosFijosTipos in arCtbActivosFijosTipos %}
+                            <option value="{{arCtbActivosFijosTipos.codigoActivoFijoTipoPk}}">{{ arCtbActivosFijosTipos.nombre }}</option>
+                        {%endfor%}
+                    </select>               
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Ubicacion:</span>
+                    <input type="text" class="span2" name="TxtUbicacion"  >
+                </div>
+            </tr>             
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Marca:</span>
+                    <input type="text" class="span2" name="TxtMarca"  >
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Modelo:</span>
+                    <input type="text" class="span2" name="TxtModelo"  >
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Serie:</span>
+                    <input type="text" class="span2" name="TxtSerie"  >
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Placa:</span>
+                    <input type="text" class="span2" name="TxtPlacaActivoFijo"  >
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Poliza:</span>
+                    <input type="text" class="span2" name="TxtPoliza"  >
+                </div>
+            </tr>            
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Fecha compra:</span>
+                    <input type="text" id="FechaDP" class="span2" name="TxtFechaCompra"  placeholder="Fecha" value="{{ date()|date("Y/m/d") }}"/>  
+                </div>
+            </tr>            
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Costo:</span>
+                    <input type="text" class="span2" name="TxtCosto" onkeypress="return validarNumeros(event)" style="text-align: right">
+                </div>
+            </tr> 
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Proveedor:</span>
+                    {{ utilidades.textboxtercero("",4,false,false,"TxtTercero") }}
+                </div>
+            </tr>
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Documento compra:</span>
+                    <input type="text" class="span2" name="TxtDocumentoCompra"  >
+                </div>
+            </tr>             
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Vida util:</span>
+                    <input type="text" class="span2" name="TxtVidaUtil" onkeypress="return validarNumeros(event)" style="text-align: right">
+                </div>
+            </tr>    
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Vida util transcurrida:</span>
+                    <input type="text" class="span2" name="TxtVidaUtilTranscurrida" onkeypress="return validarNumeros(event)" style="text-align: right">
+                </div>
+            </tr>             
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Tasa depreciacion:</span>
+                    <input type="text" class="span2" name="TxtTasaDepreciacion" onkeypress="return validarNumeros(event)" style="text-align: right">
+                </div>
+            </tr>             
+            <tr>
+                <div class="input-prepend">
+                    <span class="add-on-zikmont">Valor salvamento:</span>
+                    <input type="text" class="span2" name="TxtValorSalvamento" onkeypress="return validarNumeros(event)" style="text-align: right">
+                </div>
+            </tr>      
+            <td></td>
+            <td><button type="submit" name="OpSubmit" value="OpGuardar" class="btn btn-primary">Guardar</button></td>
+        </tr>
+    </table>
+</form>
+</div>
+{% endblock %}

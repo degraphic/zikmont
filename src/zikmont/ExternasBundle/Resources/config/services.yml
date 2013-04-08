@@ -1,0 +1,7 @@
+parameters:
+#    zikmont_externas.example.class: zikmont\ExternasBundle\Example
+
+services:
+#    zikmont_externas.example:
+#        class: %zikmont_externas.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

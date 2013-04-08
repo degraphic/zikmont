@@ -1,0 +1,45 @@
+{% extends 'zikmontFrontEndBundle::layout_app.html.twig' %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Movimientos contables historico</h2>
+    </div>      
+    <table  class="table table-bordered table-condensed" style="width: 0%"> 
+        <tr>
+            <th></th>
+            <th>Fecha</th>
+            <th>Cuenta</th>
+            <th>Descripcion</th>
+            <th>Debito</th>
+            <th>Credito</th>
+            <th>Base</th>
+            <th></th>
+        </tr>
+        {% set douTotalDebito = 0 %}
+        {% set douTotalCredito = 0 %}
+        {% for arMovimientosContablesHistorico in arMovimientosContablesHistorico %}
+        <tr>
+            <td>{{ arMovimientosContablesHistorico.codigoMovimientoContableHistoricoPk }}</td>
+            <td>{{ arMovimientosContablesHistorico.fecha |date("Y/m/d") }}</td>            
+            <td>{{ arMovimientosContablesHistorico.codigoCuentaFk }}</td>
+            <td>{{ arMovimientosContablesHistorico.cuentaRel.nombreCuenta }}</td>
+            <td style="text-align: right">{{ arMovimientosContablesHistorico.debito | number_format(2, '.', ',') }}</td>               
+            <td style="text-align: right">{{ arMovimientosContablesHistorico.credito | number_format(2, '.', ',') }}</td>
+            <td style="text-align: right">{{ arMovimientosContablesHistorico.base | number_format(2, '.', ',') }}</td>
+            <td style="text-align: center"><input type="checkbox" name="ChkSeleccionar[]" value="{{ arMovimientosContablesHistorico.codigoMovimientoContableHistoricoPk }}" /></td>
+        </tr>
+        {% set douTotalDebito = douTotalDebito + arMovimientosContablesHistorico.debito %}
+        {% set douTotalCredito = douTotalCredito + arMovimientosContablesHistorico.credito %}
+        {% endfor %}           
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>            
+            <td>Total:</td>
+            <td style="text-align: right">{{ douTotalDebito | number_format(2, '.', ',') }}</td>
+            <td style="text-align: right">{{ douTotalCredito | number_format(2, '.', ',') }}</td>
+            <td></td>
+            <td></td>
+        </tr>        
+    </table> 
+{% endblock %}

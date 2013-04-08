@@ -1,0 +1,83 @@
+inventario_documentos_lista:
+  pattern: /inventario/documentos/lista/{codigoTipoDocumento}
+  defaults: { _controller: zikmontInventarioBundle:Documentos:lista }
+
+#Movimientos
+inventario_movimientos_lista:
+  pattern: /inventario/movimientos/lista/{codigoDocumento}
+  defaults: { _controller: zikmontInventarioBundle:Movimientos:lista} 
+  requirements:
+        id:  \d+
+        
+inventario_cargardatosmovimiento:
+  pattern: /inventario/movimientos/editar/cargardatosmovimiento/{codigoMovimientoPk}
+  defaults: { _controller: zikmontInventarioBundle:Movimientos:cargardatosmovimiento}    
+        
+inventario_movimientos_nuevo:
+  pattern: /inventario/movimientos/nuevo/{codigoDocumento}
+  defaults: { _controller: zikmontInventarioBundle:Movimientos:nuevo}        
+  
+inventario_movimientos_detalle:
+  pattern: /inventario/movimientos/detalle/{codigoMovimiento}
+  defaults: { _controller: zikmontInventarioBundle:Movimientos:detalle}   
+  
+inventario_movimientos_agregar_item:
+  pattern: /inventario/movimientos/agregar/item/{codigoMovimiento}
+  defaults: { _controller: zikmontInventarioBundle:MovimientosAgregarItem:listaItem}   
+  
+inventario_movimientos_agregar_item_documento:
+  pattern: /inventario/movimientos/agregar/item/documento/{codigoMovimiento}
+  defaults: { _controller: zikmontInventarioBundle:MovimientosAgregarItem:documentosControl}  
+  
+inventario_movimientos_agregar_item_documento_detalle:
+  pattern: /inventario/movimientos/agregar/item/documento/detalle/{codigoMovimiento}/{codigoMovimientoOrigen}
+  defaults: { _controller: zikmontInventarioBundle:MovimientosAgregarItem:documentosControlDetalle}    
+  
+inventario_movimientos_agregar_lote:
+  pattern: /inventario/movimientos/agregar/lote/{codigoMovimientoDetalle}
+  defaults: { _controller: zikmontInventarioBundle:MovimientosAgregarLote:lista}  
+  
+  
+#Consultas
+inventario_consultas_kardex:
+  pattern: /inventario/consultas/kardex
+  defaults: { _controller: zikmontInventarioBundle:Consultas:kardex} 
+  
+inventario_consultas_disponibles:
+  pattern: /inventario/consultas/disponibles
+  defaults: { _controller: zikmontInventarioBundle:Consultas:disponibles}   
+  
+inventario_consultas_item:
+  pattern: /inventario/consultas/item/{codigoItem}
+  defaults: { _controller: zikmontInventarioBundle:Consultas:item}  
+  requirements:
+        id:  \d+ 
+        
+inventario_consultas_existencias:
+  pattern: /inventario/consultas/existencias
+  defaults: { _controller: zikmontInventarioBundle:Consultas:existencias} 
+
+inventario_consultas_movimientos_pendientes:
+  pattern: /inventario/consultas/movimientos/pendientes/{codigoDocumentoTipo}
+  defaults: { _controller: zikmontFrontEndBundle:Movimientos:movimientospendientes} 
+  requirements:
+        id:  \d+  
+        
+inventario_consultas_movimientos_pendientes_detalles:
+  pattern: /inventario/consultas/movimientos/pendientes/detalles/{codigoMovimiento}/{codigoDocumentoTipo}
+  defaults: { _controller: zikmontInventarioBundle:Consultas:movimientosPendientesDetalles, codigoMovimiento: 0, codigoDocumentoTipo: 0 } 
+  requirements:
+        id:  \d+
+
+#Procesos
+inventario_procesos_regenerar_kardex:
+  pattern: /inventario/procesos/regenerar/kardex
+  defaults: { _controller: zikmontInventarioBundle:Procesos:regenerarKardex}  
+  
+inventario_procesos_regenerar_costos:
+  pattern: /inventario/procesos/regenerar/costos
+  defaults: { _controller: zikmontInventarioBundle:Procesos:regenerarCostos}
+  
+inventario_procesos_cierre_mes:
+  pattern: /inventario/procesos/cierre/mes
+  defaults: { _controller: zikmontInventarioBundle:Procesos:CierreMes}   
