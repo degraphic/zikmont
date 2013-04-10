@@ -52,8 +52,8 @@ class Control_Impresion_Inventario {
                 break;
 
             case 9:
-                $Impresion = new ImpresionOrdenCompra();
-                $Impresion->Generar($this->get_EncabezadoMovimiento(),$this->get_DetallesMovimiento());
+                $Impresion = new Formatos\FormatoOrdenCompra();
+                $Impresion->Generar($em,$arMovimiento);
                 break;
 
             case 15:

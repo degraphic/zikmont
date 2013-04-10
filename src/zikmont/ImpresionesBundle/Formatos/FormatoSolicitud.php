@@ -13,7 +13,7 @@ class FormatoSolicitud extends FormatoGeneral {
         self::$arMovimiento = $arMovimiento;
         self::$em = $em;
         $this->Pdf->AddPage();
-        $this->Pdf->Output("Solicitud".$arMovimiento->getNumeroMovimiento.".pdf", 'D');
+        $this->Pdf->Output($arMovimiento->getdocumentoRel()->getNombre()."-".$arMovimiento->getNumeroMovimiento().".pdf", 'D');
         exit;
     }
 
@@ -36,7 +36,7 @@ class FormatoSolicitud extends FormatoGeneral {
         $this->SetY(26);
 
         foreach ($Datos as $col) {
-            $this->SetX(28);
+            $this->SetX(20);
             $this->Cell(40, 5, $col, 0, 'R');
             $this->Ln(3.5);
         }
