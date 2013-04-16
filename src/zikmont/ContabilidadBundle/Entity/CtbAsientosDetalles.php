@@ -82,6 +82,13 @@ class CtbAsientosDetalles
      */
     private $centroCostosRel; 
     
+    /**
+     * @ORM\ManyToOne(targetEntity="zikmont\FrontEndBundle\Entity\GenTerceros", inversedBy="CtbAsientosDetalles")
+     * @ORM\JoinColumn(name="codigo_tercero_fk", referencedColumnName="codigo_tercero_pk")
+     */
+    protected $terceroRel;    
+
+
 
     /**
      * Get codigoAsientoDetallePk
@@ -314,26 +321,6 @@ class CtbAsientosDetalles
     }
 
     /**
-     * Set terceroRel
-     *
-     * @param zikmont\FrontEndBundle\Entity\GenTerceros $terceroRel
-     */
-    public function setTerceroRel(\zikmont\FrontEndBundle\Entity\GenTerceros $terceroRel)
-    {
-        $this->terceroRel = $terceroRel;
-    }
-
-    /**
-     * Get terceroRel
-     *
-     * @return zikmont\FrontEndBundle\Entity\GenTerceros 
-     */
-    public function getTerceroRel()
-    {
-        return $this->terceroRel;
-    }
-
-    /**
      * Set centroCostosRel
      *
      * @param zikmont\ContabilidadBundle\Entity\CtbCentrosCostos $centroCostosRel
@@ -351,5 +338,25 @@ class CtbAsientosDetalles
     public function getCentroCostosRel()
     {
         return $this->centroCostosRel;
+    }
+
+    /**
+     * Set terceroRel
+     *
+     * @param zikmont\FrontEndBundle\Entity\GenTerceros $terceroRel
+     */
+    public function setTerceroRel(\zikmont\FrontEndBundle\Entity\GenTerceros $terceroRel)
+    {
+        $this->terceroRel = $terceroRel;
+    }
+
+    /**
+     * Get terceroRel
+     *
+     * @return zikmont\FrontEndBundle\Entity\GenTerceros 
+     */
+    public function getTerceroRel()
+    {
+        return $this->terceroRel;
     }
 }

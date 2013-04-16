@@ -14,7 +14,7 @@ contabilidad_asientos_lista:
         
 contabilidad_asientos_detalles:
   pattern: /contabilidad/asientos/detalles/{codigoAsiento}
-  defaults: { _controller: zikmontContabilidadBundle:Asientos:asientosDetalles} 
+  defaults: { _controller: zikmontContabilidadBundle:Asientos:detalles} 
   requirements:
         id:  \d+                   
 
